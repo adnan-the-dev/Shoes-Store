@@ -1,34 +1,42 @@
-import { Box, Typography } from '@mui/material'
+import { Autocomplete, Box, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import logo from '../../assets/logo.png'
 import { AiOutlineUser } from "react-icons/ai"
-import { IoCartOutline } from "react-icons/io5";
+import { RiShoppingBag2Line } from "react-icons/ri";
+import { LogoBox, LogutBox, MainBox } from '../sharedFile/styled-component';
+
 
 export const Navbar = () => {
-
+  const brandName = ['Addidas', 'Nike', 'Service', 'Bata']
   return (
     <>
-      <Box style={{
-        height: '85px',
-        width: '100%',
-        // border:'1px solid red',
-        backgroundColor: 'aqua',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent:'space-between',
-        padding:'0px 6rem'
-      }}>
-        <Box style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+      <MainBox>
+        <LogoBox>
           <img style={{ width: '70px' }} src={logo} alt="" />
+          <Typography>Complete Order</Typography>
+          <Typography>Pending Order</Typography>
+          <Box>
+            <select style={{ padding: '8px', outline: 'none', fontSize: '1rem', border: 'none', backgroundColor: 'transparent' }}>
+              <option label='Select brand'></option>
+              {
+                brandName.map((item, i) => {
+                  return (
+                    <option key={i} value="">{item}</option>
+                  )
+                })
+              }
+            </select>
+          </Box>
+
           <Typography>Log in</Typography>
           <Typography>Admin panel</Typography>
-        </Box>
-        <Box style={{ display: 'flex', alignItems: 'center', gap: '9px' ,opacity:'.800', fontSize:'1.4rem'}}>
+        </LogoBox>
+        <LogutBox>
           <Typography>Log out</Typography>
           <AiOutlineUser />
-          <IoCartOutline />
-        </Box>
-      </Box>
+          <RiShoppingBag2Line />
+        </LogutBox>
+      </MainBox >
     </>
   )
 }

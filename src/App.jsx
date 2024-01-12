@@ -13,9 +13,9 @@ function App() {
   return (
     <>
       <ToastContainer />
-      <Navbar />
+      {/* <Navbar /> */}
 
-      {/* <Login/>
+       <Login/>
    
       {/* <Main /> */}
     </>

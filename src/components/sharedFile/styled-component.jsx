@@ -35,3 +35,32 @@ export const ButtonBox = styled(Button)({
 export const ImageBox = styled(Box)({
   opacity: '.80!important'
 });
+
+// ****************Navbar************
+export const MainBox = styled(Box)({
+  height: '85px',
+  width: '100%',
+  // border:'1px solid red',
+  // backgroundColor: 'aqua',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '0px 6rem',
+  cursor: "pointer"
+});
+export const LogoBox = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '12px',
+  opacity: '.900'
+});
+export const LogutBox = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '9px',
+  opacity: '.900',
+  fontSize: '1.4rem'
+});
+
+// ****************Navbar************
+
