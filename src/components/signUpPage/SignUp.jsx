@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 
 export const SignUp = () => {
   const [loginData, setLoginData] = useState([]);
-  console.log("Login successful", loginData);
+  console.log(loginData);
   const {
     register,
     handleSubmit,
