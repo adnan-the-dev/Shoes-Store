@@ -6,6 +6,7 @@ import { Login } from "./components/loginPage/Login";
 import { Navbar } from "./components/navbar/Navbar";
 import Main from "./components/main/Main";
 import { ToastContainer } from 'react-toastify';
+import { SignUp } from "./components/signUpPage/SignUp";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -15,8 +16,8 @@ function App() {
       <ToastContainer />
       {/* <Navbar /> */}
 
-       <Login/>
-   
+       {/* <Login/> */}
+       <SignUp/>
       {/* <Main /> */}
     </>
   );

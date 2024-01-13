@@ -1,28 +1,26 @@
 import {
   Box,
   Button,
-  Checkbox,
   Divider,
-  FormControlLabel,
   TextField,
   Typography,
 } from "@mui/material";
+import { IoIosInformationCircleOutline } from "react-icons/io";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { FcGoogle } from "react-icons/fc";
 
-export const Login = () => {
-  const [loginData,setLoginData] = useState([])
-  console.log("Login successful", loginData);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-
-  const onSubmit = (data) => {
-    setLoginData(data)
-  };
+export const SignUp = () => {
+    const [loginData,setLoginData] = useState([])
+    console.log("Login successful", loginData);
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
+  
+    const onSubmit = (data) => {
+      setLoginData(data)
+    };
 
   return (
     <>
@@ -39,52 +37,13 @@ export const Login = () => {
             backgroundColor: "white",
           }}
         >
-          <Typography variant="h5" component="div" sx={{ fontWeight: "bold" }}>
-            Login to your account
+          <Typography variant="h5" component="div" sx={{ fontWeight: "bold",display:'flex',alignItems:'center',gap:'8px' }}>
+          Register 
+          <IoIosInformationCircleOutline />
           </Typography>
-          <Box style={{ display: "flex", gap: "6px", marginTop: "16px" }}>
-            <Typography style={{ color: "#8f8282" }}>
-              Don't have an account?
-            </Typography>
-            <Typography
-              style={{
-                color: "#6e6161",
-                cursor: "pointer",
-                fontWeight: "bold",
-                textDecoration: "underLine",
-              }}
-            >
-              Sign Up
-            </Typography>
-          </Box>
-          <Button
-            style={{
-              height: "58px",
-              width: "100%",
-              border: "1px solid #c4c4c4",
-              borderRadius: "5px",
-              marginTop: "2rem",
-              display: "flex",
-              gap: "12px",
-            }}
-          >
-            <FcGoogle size={30} />
-            <Typography style={{ fontWeight: "600", color: "#6a6a6a" }}>
-              Continue with Google
-            </Typography>
-          </Button>
           <Divider
-            sx={{
-              height: "20px",
-              textAlign: "center",
-              color: "#aba2a2",
-              display: "flex",
-              alignItems: "center",
-              marginTop: "2.5rem",
-            }}
-          >
-            OR
-          </Divider>
+            sx={{marginTop:'12px'}}
+          />
           <Box style={{ marginTop: "17px" }}>
             <TextField
               fullWidth
