@@ -6,7 +6,7 @@ import { IoIosArrowUp } from "react-icons/io";
 import { CiCircleCheck } from "react-icons/ci";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { InputLable, UserTextField } from "./styled-component";
+import { AlertBox, AlertBoxParagraph, AlertBoxTage, ArrowBox, ButtonBox, CancelAndSaveBtn, EmailMainBox, InputLable, MailBox, MainInputCityBox, MainZipCodeBox, UserTextField } from "./styled-component";
 
 export const SignUp = () => {
   const [loginData, setLoginData] = useState([]);
@@ -14,7 +14,6 @@ export const SignUp = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
@@ -52,7 +51,7 @@ export const SignUp = () => {
 
           </Typography>
           <Divider sx={{ marginTop: "12px" }} />
-          <Box style={{ marginTop: "17px", padding:'12px 0px' }}>
+          <Box style={{ marginTop: "17px", padding: '12px 0px' }}>
             <InputLable>First Name</InputLable>
             <UserTextField
               fullWidth
@@ -78,10 +77,10 @@ export const SignUp = () => {
               sx={{ mt: 2 }}
             />
             <InputLable>Email</InputLable>
-            <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
-              <Box style={{ padding: '16.5px 20px',marginTop:'1rem', borderRadius: '6px', boxShadow: 'rgba(0, 0, 0, 0.10) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px' }}>
+            <EmailMainBox>
+              <MailBox>
                 <MdOutlineMail size={19} />
-              </Box>
+              </MailBox>
               <UserTextField
                 fullWidth
                 placeholder="example@gmail.com"
@@ -89,7 +88,7 @@ export const SignUp = () => {
                   required: "Email is required",
                 })}
               />
-            </Box>
+            </EmailMainBox>
             <InputLable>Street Address</InputLable>
             <UserTextField
               fullWidth
@@ -98,7 +97,7 @@ export const SignUp = () => {
               })}
             />
             <InputLable>City</InputLable>
-            <Box style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+            <MainInputCityBox>
               <UserTextField
                 fullWidth
                 placeholder="Log Angeles"
@@ -106,11 +105,11 @@ export const SignUp = () => {
                   required: "City is required",
                 })}
               />
-              <Box style={{ padding: '10px 20px',marginTop:'1rem', borderRadius: '6px', boxShadow: 'rgba(0, 0, 0, 0.10) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px' }}>
+              <ArrowBox>
                 <IoIosArrowUp size={14} />
                 <IoIosArrowDown size={14} />
-              </Box>
-            </Box>
+              </ArrowBox>
+            </MainInputCityBox>
             <InputLable>State/Province</InputLable>
             <UserTextField
               fullWidth
@@ -127,10 +126,10 @@ export const SignUp = () => {
                 required: "Country is required",
               })}
             />
-            <InputLable style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <MainZipCodeBox>
               ZIP/Postal Code
               <IoIosInformationCircleOutline size={18} />
-            </InputLable>
+            </MainZipCodeBox>
             <UserTextField
               fullWidth
               placeholder="8675"
@@ -138,58 +137,25 @@ export const SignUp = () => {
                 required: "ZIP/Postal Code is required",
               })}
             />
-            <Box style={{ backgroundColor: '#f3f4f6', padding: '2rem 3rem', marginTop: '2rem', borderRadius: '6px' }}>
-              <Typography sx={{ paddingLeft: '2rem', fontWeight: 'bold', color: '#363b42', fontSize: '1.1rem' }}>Alerts</Typography>
-              <Typography sx={{ padding: '1rem 2rem', color: '#9399a1', fontSize: '.9rem' }}>Get updates of any new activity or features. Turn on/off your preferences</Typography>
-            </Box>
-            <Box style={{display:'flex',alignItems:'center',justifyContent: 'flex-end',gap:'1rem'}}>
-            <CiCircleCheck size={18} strokeWidth= '1' color='#17d781' marginTop='1rem'/>
-              <Button
+            <AlertBox>
+              <AlertBoxTage>Alerts</AlertBoxTage>
+              <AlertBoxParagraph>Get updates of any new activity or features. Turn on/off your preferences</AlertBoxParagraph>
+            </AlertBox>
+            <ButtonBox>
+              <CiCircleCheck size={17} strokeWidth='1' color='#17d781' marginTop='1rem' />
+              <CancelAndSaveBtn
                 type="submit"
-                sx={{
-                  p: 2,
-                  backgroundColor: "#e7e7e7",
-                  color: "#2f2fff",
-                  marginTop: "17px",
-                  "&:hover": { backgroundColor: "#4338caa" },
-                  fontSize: '.75rem',
-                  lineHeight: '1rem',
-                  padding:'0.9rem 1.5rem'
-                }}
               >
                 Cancel
-              </Button>
-              <Button
+              </CancelAndSaveBtn>
+              <CancelAndSaveBtn
                 type="submit"
-                sx={{
-                  p: 2,
-                  backgroundColor: "#4338ca",
-                  color: "#fff",
-                  marginTop: "17px",
-                  "&:hover": { backgroundColor: "#4338caa1" },
-                  fontSize: '.75rem',
-                  lineHeight: '1rem',
-                  padding:'0.9rem 2rem'
-                }}
+                savebtn={true}
               >
                 Save
-              </Button>
-            </Box>
+              </CancelAndSaveBtn>
+            </ButtonBox>
           </Box>
-          {/* <Button
-            type="submit"
-            fullWidth
-            sx={{
-              p: 2,
-              backgroundColor: "#4338ca",
-              color: "#fff",
-              fontWeight: "600",
-              marginTop: "17px",
-              "&:hover": { backgroundColor: "#4338caa1" },
-            }}
-          >
-            Login
-          </Button> */}
         </Box>
       </Box >
     </>

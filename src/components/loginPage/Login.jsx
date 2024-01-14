@@ -4,15 +4,17 @@ import {
   Checkbox,
   Divider,
   FormControlLabel,
+  InputLabel,
   TextField,
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
+import { DividerBox, DontTag, GoogleBtnBox, GoogoleTag, HeadingBox, InputBox, InputLabelBox, LoginBtn, MainBoxLogin, SignUpHereTag, SignUpLineBox } from "./styled-component";
 
 export const Login = () => {
-  const [loginData,setLoginData] = useState([])
+  const [loginData, setLoginData] = useState([])
   console.log("Login successful", loginData);
   const {
     register,
@@ -26,69 +28,36 @@ export const Login = () => {
 
   return (
     <>
-      <Box>
+      <MainBoxLogin>
         <Box
           component="form"
           onSubmit={handleSubmit(onSubmit)}
-          sx={{
-            maxWidth: "600px",
-            margin: "auto",
-            padding: "20px",
-            borderRadius: "8px",
-            boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-            backgroundColor: "white",
-          }}
         >
-          <Typography variant="h5" component="div" sx={{ fontWeight: "bold" }}>
+          <HeadingBox>
             Login to your account
-          </Typography>
-          <Box style={{ display: "flex", gap: "6px", marginTop: "16px" }}>
-            <Typography style={{ color: "#8f8282" }}>
+          </HeadingBox>
+          <SignUpLineBox>
+            <DontTag>
               Don't have an account?
-            </Typography>
-            <Typography
-              style={{
-                color: "#6e6161",
-                cursor: "pointer",
-                fontWeight: "bold",
-                textDecoration: "underLine",
-              }}
-            >
-              Sign Up
-            </Typography>
-          </Box>
-          <Button
-            style={{
-              height: "58px",
-              width: "100%",
-              border: "1px solid #c4c4c4",
-              borderRadius: "5px",
-              marginTop: "2rem",
-              display: "flex",
-              gap: "12px",
-            }}
-          >
+            </DontTag>
+            <SignUpHereTag>
+              Sign up here
+            </SignUpHereTag>
+          </SignUpLineBox>
+          <GoogleBtnBox>
             <FcGoogle size={30} />
-            <Typography style={{ fontWeight: "600", color: "#6a6a6a" }}>
+            <GoogoleTag>
               Continue with Google
-            </Typography>
-          </Button>
-          <Divider
-            sx={{
-              height: "20px",
-              textAlign: "center",
-              color: "#aba2a2",
-              display: "flex",
-              alignItems: "center",
-              marginTop: "2.5rem",
-            }}
-          >
+            </GoogoleTag>
+          </GoogleBtnBox>
+          <DividerBox>
             OR
-          </Divider>
-          <Box style={{ marginTop: "17px" }}>
+          </DividerBox>
+          <InputBox>
+            <InputLabelBox>Password</InputLabelBox>
             <TextField
               fullWidth
-              label="Username"
+              type="text"
               {...register("username", {
                 required: "Username is required",
                 minLength: {
@@ -100,10 +69,10 @@ export const Login = () => {
               helperText={errors.username?.message}
               margin="normal"
             />
+            <InputLabelBox>Password</InputLabelBox>
             <TextField
               fullWidth
               type="password"
-              label="Password"
               {...register("password", {
                 required: "Password is required",
                 minLength: {
@@ -116,23 +85,14 @@ export const Login = () => {
               margin="normal"
               sx={{ mt: 2 }}
             />
-          </Box>
-          <Button
+          </InputBox>
+          <LoginBtn
             type="submit"
-            fullWidth
-            sx={{
-              p: 2,
-              backgroundColor: "#4338ca",
-              color: "#fff",
-              fontWeight: "600",
-              marginTop: "17px",
-              '&:hover':{backgroundColor:'#4338caa1'}
-            }}
           >
             Login
-          </Button>
+          </LoginBtn>
         </Box>
-      </Box>
+      </MainBoxLogin>
     </>
   );
 };
