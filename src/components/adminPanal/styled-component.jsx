@@ -13,7 +13,7 @@ export const ChildBox = styled(Box)({
     flexDirection:'column',
     textAlign:'center',
     justifyContent:'center',
-    padding:'0px 15rem',
+    padding:'0px 18em',
     height: '400px',
     width:'50%',
     boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',
