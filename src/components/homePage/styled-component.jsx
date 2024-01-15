@@ -8,12 +8,13 @@ export const CatagoryBox = styled(Box)({
 
 export const ChildCatagoryBox = styled(Box)({
   backgroundColor: "#edeef0",
+  // width:'25%'
 });
 
 export const ImageBox = styled(Box)({
-  height: "350px",
-  width: "370px",
-  padding: "2px 2px",
+  height: "300px",
+  width: "300px",
+  // padding: "2px 2px",
 });
 
 export const CategoryTag = styled(Box)({
@@ -45,3 +46,23 @@ export const SilderTag = styled(Box)({
   lineHeight: "1.75rem",
   marginBottom: '3rem!important',
 });
+
+export const CarouselBox = styled(Box)({
+  // textAlign: 'center',
+  // display: "block",
+  // justifyContent: "center",
+  // alignItems:'center'
+
+});
+
+export const CarouselText = styled(Typography)({
+  fontWeight: '600',
+  marginLeft: '0.5rem',
+  marginBottom: '0!important',
+  marginTop: '0.5rem!important',
+  cursor: 'pointer',
+  listStyle: 'none',
+  fontStyle: 'normal',
+});
+
+
