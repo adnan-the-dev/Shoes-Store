@@ -5,7 +5,7 @@ import Nike from '../../assets/Nike.webp'
 import Bata from '../../assets/Bata.webp'
 import Service from '../../assets/Service.webp'
 import { Box, Grid, Typography } from '@mui/material'
-import { CarouselBox, CarouselText, CatagoryBox, CategoryTag, ChildCatagoryBox, ImageBox, MainSilderBox, SilderTag, TypographyBox } from './styled-component'
+import { BoxText, CarouselBox, CarouselBoxText, CarouselImage, CarouselText, CarouselTypography, CatagoryBox, CategoryTag, ChildCatagoryBox, DiscoutBox, DiscoutText, ImageBox, MainCardSection, MainSilderBox, NewProductSection, SilderTag, TypographyBox, TypographyText, ViewAllBox } from './styled-component'
 import Carousel from 'react-multi-carousel'
 import "react-multi-carousel/lib/styles.css";
 import { toast } from 'react-toastify'
@@ -48,47 +48,65 @@ export default function Home() {
       breakpoint: { max: 464, min: 0 },
       items: 1
     },
-};
-return (
-  <>
-    <Box>
-      <img width='100%' src={banner} alt="" />
-    </Box>
+  };
+  return (
+    <>
+      <Box>
+        <img width='100%' src={banner} alt="" />
+      </Box>
 
-    <CatagoryBox>
-      {
-        category.map((item, i) => {
-          return (
-            <ChildCatagoryBox key={i}>
-              <ImageBox component='img' src={item.img} alt="" />
-              <CategoryTag>
-                <TypographyBox onClick={() => toast.success(item.name)}>{item.name}</TypographyBox>
-              </CategoryTag>
-            </ChildCatagoryBox>
-          )
-        })
-      }
-    </CatagoryBox>
-
-    {/* *********Silder Section************ */}
-
-    <MainSilderBox>
-      <SilderTag>By Adidas</SilderTag>
-      <CarouselBox>
-      <Carousel style={{ textAlign: 'center' }} responsive={responsive}>
+      <CatagoryBox>
         {
-          category.map((item) => {
+          category.map((item, i) => {
             return (
-              <ImageBox component='img' src={item.img} alt="" />
+              <ChildCatagoryBox key={i}>
+                <ImageBox component='img' src={item.img} alt="" />
+                <CategoryTag>
+                  <TypographyBox onClick={() => toast.success(item.name)}>{item.name}</TypographyBox>
+                </CategoryTag>
+              </ChildCatagoryBox>
             )
           })
         }
-      </Carousel>
-      <CarouselText>CLOUDFOAM PURE SHOES</CarouselText>
-      </CarouselBox>
-    </MainSilderBox>
-  </>
-)
+      </CatagoryBox>
+
+      {/* *********Silder Section************ */}
+
+      <MainSilderBox>
+        <SilderTag>By Adidas</SilderTag>
+        <CarouselBox>
+          <Carousel style={{ textAlign: 'center' }} responsive={responsive}>
+            {
+              category.map((item) => {
+                return (
+                  <Box>
+                   <CarouselImage component='img' src={item.img} alt="" />
+                    <CarouselBoxText>
+                      <CarouselTypography>CLOUDFOAM PURE SHOES</CarouselTypography>
+                      <DiscoutBox>
+                      <Typography className="card-text">Rs:75</Typography>
+                      <DiscoutText>15% off</DiscoutText>
+                      </DiscoutBox>
+                    </CarouselBoxText>
+                  </Box>
+                )
+              })
+            }
+          </Carousel>
+        </CarouselBox>
+      </MainSilderBox>
+
+      <MainCardSection>
+        <NewProductSection active={true}>
+          <BoxText>
+            <TypographyText>--Product</TypographyText>
+            <TypographyText setActive={true}>Check our new product</TypographyText>
+          </BoxText>
+          <ViewAllBox>VIEW ALL</ViewAllBox>
+        </NewProductSection>
+      </MainCardSection>
+    </>
+  )
 }
 
 
