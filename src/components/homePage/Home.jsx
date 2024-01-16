@@ -5,7 +5,7 @@ import Nike from '../../assets/Nike.webp'
 import Bata from '../../assets/Bata.webp'
 import Service from '../../assets/Service.webp'
 import { Box, Grid, Typography } from '@mui/material'
-import { BoxText, CarouselBox, CarouselBoxText, CarouselImage, CarouselText, CarouselTypography, CatagoryBox, CategoryTag, ChildCatagoryBox, DiscoutBox, DiscoutText, ImageBox, MainCardSection, MainSilderBox, NewProductSection, SilderTag, TypographyBox, TypographyText, ViewAllBox } from './styled-component'
+import { BoxText, CardBox, CardText, CardTitle, CardsContainer, CarouselBox, CarouselBoxText, CarouselImage, CarouselText, CarouselTypography, CatagoryBox, CategoryTag, ChildCatagoryBox, DecriptionSection, DiscoutBox, DiscoutText, ImageBox, MainCardSection, MainSilderBox, NewProductSection, SilderTag, TypographyBox, TypographyText, ViewAllBox } from './styled-component'
 import Carousel from 'react-multi-carousel'
 import "react-multi-carousel/lib/styles.css";
 import { toast } from 'react-toastify'
@@ -26,6 +26,22 @@ export default function Home() {
       name: 'Bata'
     },
     {
+      img: Service,
+      name: 'Service'
+    },
+    {
+      img: Service,
+      name: 'Service'
+    },{
+      img: Service,
+      name: 'Service'
+    },{
+      img: Service,
+      name: 'Service'
+    },{
+      img: Service,
+      name: 'Service'
+    },{
       img: Service,
       name: 'Service'
     },
@@ -57,7 +73,7 @@ export default function Home() {
 
       <CatagoryBox>
         {
-          category.map((item, i) => {
+          category.slice(0,4).map((item, i) => {
             return (
               <ChildCatagoryBox key={i}>
                 <ImageBox component='img' src={item.img} alt="" />
@@ -80,12 +96,12 @@ export default function Home() {
               category.map((item) => {
                 return (
                   <Box>
-                   <CarouselImage component='img' src={item.img} alt="" />
+                    <CarouselImage component='img' src={item.img} alt="" />
                     <CarouselBoxText>
                       <CarouselTypography>CLOUDFOAM PURE SHOES</CarouselTypography>
                       <DiscoutBox>
-                      <Typography className="card-text">Rs:75</Typography>
-                      <DiscoutText>15% off</DiscoutText>
+                        <Typography className="card-text">Rs:75</Typography>
+                        <DiscoutText>15% off</DiscoutText>
                       </DiscoutBox>
                     </CarouselBoxText>
                   </Box>
@@ -97,13 +113,38 @@ export default function Home() {
       </MainSilderBox>
 
       <MainCardSection>
-        <NewProductSection active={true}>
+        <NewProductSection>
           <BoxText>
             <TypographyText>--Product</TypographyText>
             <TypographyText setActive={true}>Check our new product</TypographyText>
           </BoxText>
           <ViewAllBox>VIEW ALL</ViewAllBox>
         </NewProductSection>
+
+        <Grid container>
+          {
+            category.map((item)=>  <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
+            <CardsContainer>
+              <ImageBox component='img' src={Adidas} alt="" />
+              <DecriptionSection>
+              <Box>
+                <CardTitle>CLOUDFOAM PURE SHOES</CardTitle>
+              </Box>
+              <CardText>Cloud White / Chalk White / Zero Metalic</CardText>
+              <CardBox>
+                <Typography>Hello</Typography>
+                <Typography>Hello</Typography>
+              </CardBox>
+              </DecriptionSection>
+            </CardsContainer>
+          </Grid>
+          )
+          }
+        
+          
+          
+        </Grid>
+
       </MainCardSection>
     </>
   )

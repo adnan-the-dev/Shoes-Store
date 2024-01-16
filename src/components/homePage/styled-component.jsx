@@ -93,20 +93,19 @@ export const DiscoutText = styled(Typography)({
 export const MainCardSection = styled(Box)({
   boxSizing: 'border-box',
   marginTop: '3rem!important',
-  marginLeft: "3rem",
-  marginBottom: '3rem!important',
+  marginLeft: "1rem",
+  marginRight: "1rem",
 
 
 });
 
-export const NewProductSection = styled(Box)(({active})=>({
+export const NewProductSection = styled(Box)({
   display:'flex',
   justifyContent:'space-between',
+  alignItems:'center',
   boxSizing: 'border-box',
-  "&:hover":{
-    backgroundColor:active ? '#000' : ""
-  }
-}));
+  marginBottom: '3rem!important',
+});
 
 export const BoxText = styled(Box)({
   display: 'flex',
@@ -122,10 +121,37 @@ export const TypographyText = styled(Typography)(({setActive})=>({
   marginLeft: '2.5rem', 
   color:setActive ? '#d4dbdd':'#000'
 
-}));
+}))
 export const ViewAllBox = styled(Typography)({
   fontWeight: '600',
-  fontWeight:'600',
   cursor:'pointer',
-  marginRight:'2.5rem'
+  marginRight:'2.5rem',
+  "&:hover": {
+    backgroundColor:'#000',
+    color:"#fff"
+  }
+});
+
+// **************CardsContainer************
+
+export const CardsContainer = styled(Box)({
+  // width: "400px",
+  // padding:'0px 16px'
+  margin:'0px 8px'
+});
+
+export const CardTitle = styled(Typography)({
+  fontWeight:'bold',
+});
+export const CardText = styled(Typography)({
+});
+
+export const CardBox = styled(Box)({
+  display:'flex',
+  justifyContent:'space-between',
+  padding:'2px 2px'
+});
+
+export const DecriptionSection = styled(Box)({
+  padding:'2px 10px'
 });
