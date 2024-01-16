@@ -9,13 +9,15 @@ import { ToastContainer } from "react-toastify";
 import { SignUp } from "./components/signUpPage/SignUp";
 import AdminPenal from "./components/adminPanal/AdminPenal";
 import Home from "./components/homePage/Home";
+import CategoryDetails from "./components/categoryDetailsPage/CategoryDetails";
 
 function App() {
   return (
     <>
       <ToastContainer />
       <Navbar />
-      <Home/>
+      <CategoryDetails/>
+      {/* <Home/> */}
       {/* <AdminPenal /> */}
       {/* <Login/> */}
       {/* <SignUp/> */}

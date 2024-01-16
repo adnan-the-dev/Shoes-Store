@@ -10,7 +10,7 @@ export const Navbar = () => {
   const brandName = ['Addidas', 'Nike', 'Service', 'Bata']
   return (
     <>
-      <MainBox>
+      <MainBox >
         <LogoBox>
           <img style={{ width: '70px' }} src={logo} alt="" />
           <Typography>Complete Order</Typography>

@@ -46,7 +46,8 @@ export const MainBox = styled(Box)({
   alignItems: 'center',
   justifyContent: 'space-between',
   padding: '0px 6rem',
-  cursor: "pointer"
+  cursor: "pointer",
+  boxShadow: 'rgba(0, 0, 0, 0.15) 0px 3px 3px 0px',
 });
 export const LogoBox = styled(Box)({
   display: 'flex',
