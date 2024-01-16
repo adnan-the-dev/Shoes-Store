@@ -5,7 +5,7 @@ import Nike from '../../assets/Nike.webp'
 import Bata from '../../assets/Bata.webp'
 import Service from '../../assets/Service.webp'
 import { Box, Grid, Typography } from '@mui/material'
-import { BoxText, CardBox, CardText, CardTitle, CardsContainer, CarouselBox, CarouselBoxText, CarouselImage, CarouselText, CarouselTypography, CatagoryBox, CategoryTag, ChildCatagoryBox, DecriptionSection, DiscoutBox, DiscoutText, ImageBox, MainCardSection, MainSilderBox, NewProductSection, SilderTag, TypographyBox, TypographyText, ViewAllBox } from './styled-component'
+import { BoxText, CardBox, CardImage, CardText, CardTitle, CardsContainer, CarouselBox, CarouselBoxText, CarouselImage, CarouselText, CarouselTypography, CatagoryBox, CategoryTag, ChildCatagoryBox, DecriptionSection, DiscoutBox, DiscoutText, DiscoutTypo, ImageBox, MainCardSection, MainSilderBox, NewProductSection, Price, PriceSection, SilderTag, TypographyBox, TypographyText, ViewAllBox } from './styled-component'
 import Carousel from 'react-multi-carousel'
 import "react-multi-carousel/lib/styles.css";
 import { toast } from 'react-toastify'
@@ -100,7 +100,7 @@ export default function Home() {
                     <CarouselBoxText>
                       <CarouselTypography>CLOUDFOAM PURE SHOES</CarouselTypography>
                       <DiscoutBox>
-                        <Typography className="card-text">Rs:75</Typography>
+                        <DiscoutText isActive={true}>Rs:75</DiscoutText>
                         <DiscoutText>15% off</DiscoutText>
                       </DiscoutBox>
                     </CarouselBoxText>
@@ -125,17 +125,22 @@ export default function Home() {
           {
             category.map((item)=>  <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
             <CardsContainer>
-              <ImageBox component='img' src={Adidas} alt="" />
+              <Box style={{boxShadow:' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px'}}>
+              <CardImage component='img' src={item.img} alt="" />
               <DecriptionSection>
               <Box>
                 <CardTitle>CLOUDFOAM PURE SHOES</CardTitle>
               </Box>
               <CardText>Cloud White / Chalk White / Zero Metalic</CardText>
               <CardBox>
-                <Typography>Hello</Typography>
-                <Typography>Hello</Typography>
+                <PriceSection>
+                  <Price setColor={true}>12$</Price>
+                  <Price>71.25$</Price>
+                </PriceSection>
+                <DiscoutTypo>5%</DiscoutTypo>
               </CardBox>
               </DecriptionSection>
+              </Box>
             </CardsContainer>
           </Grid>
           )

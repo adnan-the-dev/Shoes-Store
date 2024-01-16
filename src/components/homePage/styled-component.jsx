@@ -14,6 +14,7 @@ export const ChildCatagoryBox = styled(Box)({
 export const ImageBox = styled(Box)({
   height: "300px",
   width: "300px",
+  marginTop: '1rem'
   // padding: "2px 2px",
 });
 
@@ -84,17 +85,17 @@ export const DiscoutBox = styled(Box)({
   justifyContent: 'space-between'
 });
 
-export const DiscoutText = styled(Typography)({
-  color: '#1eb957'
-});
+export const DiscoutText = styled(Typography)(({isActive})=>({
+  color: isActive ? '#9fa5a4' : '#1eb957'
+}));
 
 // *********Card Section************
 
 export const MainCardSection = styled(Box)({
   boxSizing: 'border-box',
   marginTop: '3rem!important',
-  marginLeft: "1rem",
-  marginRight: "1rem",
+  // marginLeft: "1rem",
+  // marginRight: "1rem",
 
 
 });
@@ -104,7 +105,7 @@ export const NewProductSection = styled(Box)({
   justifyContent:'space-between',
   alignItems:'center',
   boxSizing: 'border-box',
-  marginBottom: '3rem!important',
+  marginBottom: '1rem!important',
 });
 
 export const BoxText = styled(Box)({
@@ -135,15 +136,19 @@ export const ViewAllBox = styled(Typography)({
 // **************CardsContainer************
 
 export const CardsContainer = styled(Box)({
-  // width: "400px",
-  // padding:'0px 16px'
-  margin:'0px 8px'
+  // margin:'0px 8px',
+  display:'flex',
+  justifyContent:'center',
+  gap:'3rem',
+  padding:'1rem 1rem'
+  // boxShadow:' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px',
 });
 
 export const CardTitle = styled(Typography)({
   fontWeight:'bold',
 });
 export const CardText = styled(Typography)({
+  color:'darkgray'
 });
 
 export const CardBox = styled(Box)({
@@ -154,4 +159,25 @@ export const CardBox = styled(Box)({
 
 export const DecriptionSection = styled(Box)({
   padding:'2px 10px'
+});
+
+export const PriceSection = styled(Box)({
+  display:'flex',
+  gap:'8px',
+  
+});
+
+export const Price = styled(Typography)(({setColor})=>({
+  color:setColor ? '#9fa5a4' : 'red',
+  textDecoration:setColor ? 'line-through' : ''  
+}));
+
+export const DiscoutTypo = styled(Typography)({
+  color:'#1eb957'
+});
+
+export const CardImage = styled(Box)({
+  // height: "300px",
+  width: "100%",
+  // marginTop: '1rem',
 });
