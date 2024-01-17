@@ -40,7 +40,7 @@ export const TagName = styled(Typography)(({ colorActive, isActive }) => ({
 // *************CardSection***************
 
 export const MainCardBox = styled(Box)({
-    marginLeft: '1.25rem',
+    // marginLeft: '1.25rem',
 });
 
 export const ChildCard = styled(Box)({
@@ -60,3 +60,53 @@ export const TextBox = styled(Typography)(({ colorBox }) => ({
     marginLeft: '2.5rem',
     color: colorBox ? '#e2e8f0' : '#212529'
 }));
+
+
+export const CardsContainer = styled(Box)({
+    // margin:'0px 8px',
+    display:'flex',
+    justifyContent:'center',
+    gap:'3rem',
+    padding:'1rem 1rem',
+    // cursor:'pointer'
+    // boxShadow:' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px',
+  });
+
+
+export const CardImage = styled(Box)({
+    // height: "300px",
+    width: "100%",
+    // marginTop: '1rem',
+  });
+
+  export const DecriptionSection = styled(Box)({
+    padding:'2px 10px'
+  });
+
+  export const CardTitle = styled(Typography)({
+    fontWeight:'bold',
+  });
+  export const CardText = styled(Typography)({
+    color:'darkgray'
+  });
+  
+  export const CardBox = styled(Box)({
+    display:'flex',
+    justifyContent:'space-between',
+    padding:'2px 2px'
+  });
+
+  export const PriceSection = styled(Box)({
+    display:'flex',
+    gap:'8px',
+    
+  });
+
+  export const Price = styled(Typography)(({setColor})=>({
+    color:setColor ? '#9fa5a4' : 'red',
+    textDecoration:setColor ? 'line-through' : ''  
+  }));
+  
+  export const DiscoutTypo = styled(Typography)({
+    color:'#1eb957'
+  });

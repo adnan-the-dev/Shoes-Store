@@ -10,13 +10,15 @@ import { SignUp } from "./components/signUpPage/SignUp";
 import AdminPenal from "./components/adminPanal/AdminPenal";
 import Home from "./components/homePage/Home";
 import CategoryDetails from "./components/categoryDetailsPage/CategoryDetails";
+import { AddToCartPage } from "./components/addToCartPage/AddToCartPage";
 
 function App() {
   return (
     <>
       <ToastContainer />
       <Navbar />
-      <CategoryDetails/>
+      <AddToCartPage/>
+      {/* <CategoryDetails/> */}
       {/* <Home/> */}
       {/* <AdminPenal /> */}
       {/* <Login/> */}
