@@ -11,13 +11,15 @@ import AdminPenal from "./components/adminPanal/AdminPenal";
 import Home from "./components/homePage/Home";
 import CategoryDetails from "./components/categoryDetailsPage/CategoryDetails";
 import { AddToCartPage } from "./components/addToCartPage/AddToCartPage";
+import { CheckOutPage } from "./components/checkOutPage/CheckOutPage";
 
 function App() {
   return (
     <>
       <ToastContainer />
       <Navbar />
-      <AddToCartPage/>
+      <CheckOutPage/>
+      {/* <AddToCartPage/> */}
       {/* <CategoryDetails/> */}
       {/* <Home/> */}
       {/* <AdminPenal /> */}
