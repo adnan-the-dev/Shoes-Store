@@ -1,4 +1,4 @@
-import { Box, TextField, Typography, styled } from "@mui/material";
+import { Box, Button, TextField, Typography, styled } from "@mui/material";
 
 // (({isActive})=>({
 export const MainShoppingCartBox = styled(Box)({
@@ -42,9 +42,8 @@ export const CartItem = styled(Typography)({
 
 
 export const SecondCartItem = styled(Box)({
-    // border:'1px solid'
+    borderBottom: '1.5px solid gray',
     display: 'flex',
-    borderBottomWidth: '2px',
     marginBottom: '0.25rem!important',
 });
 
@@ -70,17 +69,15 @@ export const TagBox = styled(Box)({
 
 })
 
-export const Text = styled(Typography)(({ isActive,isLeft }) => ({
+export const Text = styled(Typography)(({ isActive, isLeft }) => ({
     fontWeight: isActive ? '' : '600',
     fontSize: isActive ? '.900rem' : '1.25rem',
     lineHeight: isActive ? '1.25rem' : '1.75rem',
     marginBottom: '0.25rem!important',
-    color: isActive ? '#939590' : '',
-    // color: isLeft ? '#939590' : '',
-    marginLeft:isLeft ? '5rem' : ''
+    color: isActive ? '#939590' : '#42463b',
+    marginLeft: isLeft ? '5rem' : ''
 }));
 
-// margin-left: 5rem;
 
 export const MainDeleteBox = styled(Box)({
     display: 'flex',
@@ -90,4 +87,50 @@ export const MainDeleteBox = styled(Box)({
 
 export const SecondBox = styled(Box)({
     display: 'flex',
+    alignItems: "center"
+});
+
+export const MainSummaryBox = styled(Box)({
+    width: '25%',
+    marginLeft: '2.5rem',
+});
+
+export const SummaryChildBox = styled(Box)({
+    borderRadius: '0.375rem',
+    padding: '1rem',
+    backgroundColor: '#cdfae6'
+});
+
+
+export const SubTotalBox = styled(Box)({
+    display: 'flex',
+    justifyContent: 'space-between',
+    borderBottom: '2px solid gray'
+});
+
+
+export const SummaryDescription = styled(Typography)({
+    fontSize: '.75rem',
+    lineHeight: '1rem',
+    marginTop: '1rem',
+
+});
+
+export const CheckoutBtn = styled(Button)({
+    cursor: 'pointer',
+    borderRadius: '50px',
+    width: '100%',
+    height: '2.5rem',
+    textAlign: 'center',
+    backgroundColor: '#000000',
+    color: '#fff',
+    marginBottom: '0',
+    marginTop: '1rem',
+    fontSize: '100%',
+    lineHeight: 'inherit',
+    '&:hover': {
+        backgroundColor: 'hsl(0deg 0% 76.86%)',
+        color: '#000'
+    }
+
 });
