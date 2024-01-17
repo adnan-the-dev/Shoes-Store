@@ -54,5 +54,29 @@ export const LargeImg = styled(Box)({
 
 
 export const ImageTextBox = styled(Box)({
+    marginLeft: '4rem'
+});
+
+export const TypographyBox = styled(Typography)(({ isActive }) => ({
+    fontWeight: '600',
+    fontSize: isActive ? 'medium' : '1.875rem',
+    lineHeight: '2.25rem',
+    color: '#212529'
+}));
+
+
+export const PriceSection = styled(Box)({
 
 });
+
+export const PriceBox = styled(Box)({
+    display: 'flex'
+});
+
+export const Price = styled(Typography)(({ isActive, isLine }) => ({
+    fontWeight: '600',
+    marginBottom: '0!important',
+    color: isActive ? '#f54e6e' : '#9fa5a4',
+    marginLeft: isActive ? '0.5rem' : '0rem',
+    // textDecoration: isActive ?  isLine ? '' : 'line-through',
+}));

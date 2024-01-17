@@ -1,7 +1,8 @@
 import React from 'react'
-import { ChildContainer, ChildImage, ImageBox, ImageTextBox, LargeImage, LargeImg, MainContainerBox, SmallImge } from './styled-component'
+import { ChildContainer, ChildImage, ImageBox, ImageTextBox, LargeImage, LargeImg, MainContainerBox, Price, PriceBox, PriceSection, SmallImge, TypographyBox } from './styled-component'
 import Adidas from '../../assets/Adidas.webp'
 import racer from '../../assets/racer.webp'
+import { Typography } from '@mui/material'
 export function AddToCartPage() {
     return (
         <>
@@ -19,16 +20,19 @@ export function AddToCartPage() {
                     </ImageBox>
 
                     <ImageTextBox>
-                        hello
+                        <TypographyBox>HOOPS 3.0 LOW CLASSIC VINTAGE SHOES</TypographyBox>
+                        <TypographyBox isActive={true}>Grey Two / Collegiate Green / Cloud White</TypographyBox>
+
+                        <PriceSection>
+                            <PriceBox>
+                                <Price>Price: $ 70</Price>
+                                <Price isActive={true}>Price: $ 58</Price>
+                            </PriceBox>
+                                <Price isLine={true}>incl of taxes</Price>
+                        </PriceSection>
                     </ImageTextBox>
                 </ChildContainer>
             </MainContainerBox>
         </>
     )
 }
-
-
-{/* <img style={{ width: '500px', height: '500px' }}
-                    src="https://shoe-paradies.vercel.app/_next/image?url=%2Fwal.avif&w=1920&q=75"
-                    alt=""
-                /> */}
