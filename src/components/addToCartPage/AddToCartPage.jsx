@@ -1,8 +1,28 @@
 import React from 'react'
-import { ChildContainer, ChildGridBox, ChildImage, ImageBox, ImageTextBox, LargeImage, LargeImg, MainContainerBox, Price, PriceBox, PriceSection, SizeBox, SizeGridBox, SizeTage, SmallImge, TypographyBox } from './styled-component'
+import {
+    ButtonAddCart,
+    ChildContainer,
+    ChildGridBox,
+    ChildImage,
+    DescriptionHeading,
+    ImageBox,
+    ImageTextBox,
+    LargeImage,
+    LargeImg,
+    MainContainerBox,
+    Price,
+    PriceBox,
+    PriceSection,
+    ProductDescription,
+    SizeBox,
+    SizeGridBox,
+    SizeTage,
+    SmallImge,
+    TypographyBox
+} from './styled-component'
 import Adidas from '../../assets/Adidas.webp'
 import racer from '../../assets/racer.webp'
-import size from '../arrayComponent/Array'
+import { size } from '../arrayComponent/Array'
 export function AddToCartPage() {
     return (
         <>
@@ -34,9 +54,22 @@ export function AddToCartPage() {
                             <SizeBox>
                                 <SizeTage>Select Size</SizeTage>
                                 <SizeGridBox>
-                                    <ChildGridBox>UK 6F</ChildGridBox>
+                                    {
+                                        size.map((item) => {
+                                            return (
+                                                <ChildGridBox>{item}</ChildGridBox>
+                                            )
+                                        })
+                                    }
                                 </SizeGridBox>
                             </SizeBox>
+                            <ButtonAddCart component='button'>Add to Cart</ButtonAddCart>
+                            <ButtonAddCart active={true} component='button'>Online payment</ButtonAddCart>
+
+                            <ProductDescription>
+                                <DescriptionHeading>product details</DescriptionHeading>
+                                <DescriptionHeading activeWidth={true}>very comfertable and soft shoes easy to wear  and good for walk</DescriptionHeading>
+                            </ProductDescription>
                         </PriceSection>
                     </ImageTextBox>
                 </ChildContainer>

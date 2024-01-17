@@ -1,11 +1,8 @@
 import { Box, Typography, styled } from "@mui/material";
 
-// (({ colorActive, isActive }) => ({
-
 export const MainContainerBox = styled(Box)({
     paddingTop: '4rem',
     width: '100%'
-    // padding: '4rem 5rem',
 });
 
 export const ChildContainer = styled(Box)({
@@ -106,4 +103,31 @@ export const ChildGridBox = styled(Typography)({
     borderRadius: '0.375rem',
     textAlign: 'center!important',
     borderWidth: '2px!important',
+    color: '#323232'
 });
+
+export const ButtonAddCart = styled(Box)(({ active, isLine }) => ({
+    cursor: 'pointer',
+    opacity: '1',
+    borderRadius: '50px',
+    border: active ? '2px solid' : 'none',
+    width: '100%',
+    height: '2.5rem',
+    marginTop: active ? '0.5rem' : '2.5rem',
+    backgroundColor: active ? '' : '#000',
+    color: active ? '#616570' : '#fff',
+    verticalAlign: 'text-bottom!important',
+    fontSize: '100%',
+}));
+
+
+export const ProductDescription = styled(Box)({
+    marginTop: '2.5rem',
+
+});
+
+export const DescriptionHeading = styled(Typography)(({ activeWidth }) => ({
+    fontWeight: '600',
+    color:activeWidth ? '#616570': '#1c1b1c',
+    maxWidth: activeWidth ? '300px' : ''
+}));
