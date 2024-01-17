@@ -43,20 +43,20 @@ export const category = [
     {
         img: runShoes,
         name: 'Service'
-    }, 
+    },
     {
         img: snadle,
         name: 'Service'
     },
-     {
+    {
         img: Service,
         name: 'Service'
     },
-     {
+    {
         img: Service,
         name: 'Service'
     },
-     {
+    {
         img: Service,
         name: 'Service'
     },
@@ -79,21 +79,37 @@ export const category = [
     {
         img: runShoes,
         name: 'Service'
-    }, 
+    },
     {
         img: snadle,
         name: 'Service'
     },
-     {
+    {
         img: Service,
         name: 'Service'
     },
-     {
+    {
         img: Service,
         name: 'Service'
     },
-     {
+    {
         img: Service,
         name: 'Service'
     },
+]
+
+
+export const size = [
+    'UK 6',
+    'UK 6.5',
+    'UK 7',
+    'UK7.5',
+    'UK 8',
+    'UK 8.5',
+    'UK 9',
+    'UK 9.5',
+    'UK 10',
+    'UK 10.5',
+    'UK 11',
+    'UK 11.5',
 ]

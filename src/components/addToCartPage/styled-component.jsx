@@ -76,7 +76,34 @@ export const PriceBox = styled(Box)({
 export const Price = styled(Typography)(({ isActive, isLine }) => ({
     fontWeight: '600',
     marginBottom: '0!important',
-    color: isActive ? '#f54e6e' : '#9fa5a4',
+    color: isActive ? '#f54e6e' : isLine ? '#dae1eb' : '#9fa5a4',
     marginLeft: isActive ? '0.5rem' : '0rem',
-    // textDecoration: isActive ?  isLine ? '' : 'line-through',
+    textDecoration: isActive ? '' : isLine ? '' : 'line-through',
 }));
+
+export const SizeBox = styled(Box)({
+    marginTop: '4rem',
+});
+
+export const SizeTage = styled(Typography)({
+    fontWeight: '600',
+
+});
+
+export const SizeGridBox = styled(Box)({
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3,minmax(0,1fr))',
+    gap: '0.5rem!important',
+});
+
+export const ChildGridBox = styled(Typography)({
+    fontWeight: '600',
+    border: "1px solid gray",
+    opacity: '1',
+    cursor: 'pointer',
+    width: '6rem',
+    height: '2rem',
+    borderRadius: '0.375rem',
+    textAlign: 'center!important',
+    borderWidth: '2px!important',
+});

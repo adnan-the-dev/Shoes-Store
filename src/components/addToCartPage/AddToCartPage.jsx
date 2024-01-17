@@ -1,8 +1,8 @@
 import React from 'react'
-import { ChildContainer, ChildImage, ImageBox, ImageTextBox, LargeImage, LargeImg, MainContainerBox, Price, PriceBox, PriceSection, SmallImge, TypographyBox } from './styled-component'
+import { ChildContainer, ChildGridBox, ChildImage, ImageBox, ImageTextBox, LargeImage, LargeImg, MainContainerBox, Price, PriceBox, PriceSection, SizeBox, SizeGridBox, SizeTage, SmallImge, TypographyBox } from './styled-component'
 import Adidas from '../../assets/Adidas.webp'
 import racer from '../../assets/racer.webp'
-import { Typography } from '@mui/material'
+import size from '../arrayComponent/Array'
 export function AddToCartPage() {
     return (
         <>
@@ -28,7 +28,15 @@ export function AddToCartPage() {
                                 <Price>Price: $ 70</Price>
                                 <Price isActive={true}>Price: $ 58</Price>
                             </PriceBox>
-                                <Price isLine={true}>incl of taxes</Price>
+                            <Price isLine={true}>incl of taxes</Price>
+                            <Price isLine={true}>(also incl all duty charges)</Price>
+
+                            <SizeBox>
+                                <SizeTage>Select Size</SizeTage>
+                                <SizeGridBox>
+                                    <ChildGridBox>UK 6F</ChildGridBox>
+                                </SizeGridBox>
+                            </SizeBox>
                         </PriceSection>
                     </ImageTextBox>
                 </ChildContainer>
