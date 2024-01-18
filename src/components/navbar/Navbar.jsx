@@ -4,6 +4,7 @@ import logo from '../../assets/logo.png'
 import { AiOutlineUser } from "react-icons/ai"
 import { RiShoppingBag2Line } from "react-icons/ri";
 import { LogoBox, LogutBox, MainBox } from '../sharedFile/styled-component';
+import { Link } from 'react-router-dom';
 
 
 export const Navbar = () => {
@@ -27,8 +28,9 @@ export const Navbar = () => {
               }
             </select>
           </Box>
-
-          <Typography>Log in</Typography>
+          <Link to='/login'>
+            <Typography>Log in</Typography>
+          </Link>
           <Typography>Admin panel</Typography>
         </LogoBox>
         <LogutBox>

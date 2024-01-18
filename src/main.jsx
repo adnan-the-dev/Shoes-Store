@@ -4,10 +4,13 @@ import App from './App.jsx'
 // import "react-toastify/dist/ReactToastify.css";
 import 'react-toastify/dist/ReactToastify.css'
 import './index.css'
+import { BrowserRouter } from 'react-router-dom'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
   </React.StrictMode>,
 )

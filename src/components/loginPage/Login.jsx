@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { DividerBox, DontTag, GoogleBtnBox, GoogoleTag, HeadingBox, InputBox, InputLabelBox, LoginBtn, MainBoxLogin, SignUpHereTag, SignUpLineBox } from "./styled-component";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState([])
@@ -40,9 +41,11 @@ export const Login = () => {
             <DontTag>
               Don't have an account?
             </DontTag>
-            <SignUpHereTag>
-              Sign up here
-            </SignUpHereTag>
+            <Link to='/register'>
+              <SignUpHereTag>
+                Sign up here
+              </SignUpHereTag>
+            </Link>
           </SignUpLineBox>
           <GoogleBtnBox>
             <FcGoogle size={30} />

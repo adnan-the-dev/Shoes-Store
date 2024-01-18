@@ -13,13 +13,19 @@ import CategoryDetails from "./components/categoryDetailsPage/CategoryDetails";
 import { AddToCartPage } from "./components/addToCartPage/AddToCartPage";
 import { CheckOutPage } from "./components/checkOutPage/CheckOutPage";
 import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage";
+import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <>
       <ToastContainer />
       <Navbar />
-      <PendingOrderPage />
+      <Routes>
+        <Route path="/" element={<Main/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/register" element={<SignUp/>}/>
+      </Routes>
+      {/* <PendingOrderPage /> */}
       {/* <CheckOutPage/> */}
       {/* <AddToCartPage/> */}
       {/* <CategoryDetails/> */}
