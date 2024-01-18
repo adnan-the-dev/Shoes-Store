@@ -25,16 +25,12 @@ function App() {
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<SignUp/>}/>
         <Route path="/adminLog" element={<AdminPenal/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/allIdName" element={<CategoryDetails/>}/>
       </Routes>
       {/* <PendingOrderPage /> */}
       {/* <CheckOutPage/> */}
       {/* <AddToCartPage/> */}
-      {/* <CategoryDetails/> */}
-      {/* <Home/> */}
-      {/* <AdminPenal /> */}
-      {/* <Login/> */}
-      {/* <SignUp/> */}
-      {/* <Main /> */}
     </>
   );
 }

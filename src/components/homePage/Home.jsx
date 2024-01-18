@@ -9,6 +9,7 @@ import { BoxText, CardBox, CardImage, CardText, CardTitle, CardsContainer, Carou
 import Carousel from 'react-multi-carousel'
 import "react-multi-carousel/lib/styles.css";
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 
 export default function Home() {
@@ -32,16 +33,16 @@ export default function Home() {
     {
       img: Service,
       name: 'Service'
-    },{
+    }, {
       img: Service,
       name: 'Service'
-    },{
+    }, {
       img: Service,
       name: 'Service'
-    },{
+    }, {
       img: Service,
       name: 'Service'
-    },{
+    }, {
       img: Service,
       name: 'Service'
     },
@@ -73,12 +74,14 @@ export default function Home() {
 
       <CatagoryBox>
         {
-          category.slice(0,4).map((item, i) => {
+          category.slice(0, 4).map((item, i) => {
             return (
               <ChildCatagoryBox key={i}>
                 <ImageBox component='img' src={item.img} alt="" />
                 <CategoryTag>
-                  <TypographyBox onClick={() => toast.success(item.name)}>{item.name}</TypographyBox>
+                  <Link to='/allIdName'>
+                    <TypographyBox sx={{color:'#000'}} onClick={() => toast.success(item.name)}>{item.name}</TypographyBox>
+                  </Link>
                 </CategoryTag>
               </ChildCatagoryBox>
             )
@@ -96,7 +99,9 @@ export default function Home() {
               category.map((item) => {
                 return (
                   <Box>
-                    <CarouselImage component='img' src={item.img} alt="" />
+                    <Link to='/allIdName'>
+                      <CarouselImage component='img' src={item.img} alt="" />
+                    </Link>
                     <CarouselBoxText>
                       <CarouselTypography>CLOUDFOAM PURE SHOES</CarouselTypography>
                       <DiscoutBox>
@@ -123,31 +128,33 @@ export default function Home() {
 
         <Grid container>
           {
-            category.map((item)=>  <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-            <CardsContainer>
-              <Box style={{boxShadow:' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px'}}>
-              <CardImage component='img' src={item.img} alt="" />
-              <DecriptionSection>
-              <Box>
-                <CardTitle>CLOUDFOAM PURE SHOES</CardTitle>
-              </Box>
-              <CardText>Cloud White / Chalk White / Zero Metalic</CardText>
-              <CardBox>
-                <PriceSection>
-                  <Price setColor={true}>12$</Price>
-                  <Price>71.25$</Price>
-                </PriceSection>
-                <DiscoutTypo>5%</DiscoutTypo>
-              </CardBox>
-              </DecriptionSection>
-              </Box>
-            </CardsContainer>
-          </Grid>
-          )
+            category.map((item) => <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
+              <CardsContainer>
+                <Box style={{ boxShadow: ' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px' }}>
+                  <Link to='/allIdName'>
+                    <CardImage component='img' src={item.img} alt="" />
+                  </Link>
+                  <DecriptionSection>
+                    <Box>
+                      <CardTitle>CLOUDFOAM PURE SHOES</CardTitle>
+                    </Box>
+                    <CardText>Cloud White / Chalk White / Zero Metalic</CardText>
+                    <CardBox>
+                      <PriceSection>
+                        <Price setColor={true}>12$</Price>
+                        <Price>71.25$</Price>
+                      </PriceSection>
+                      <DiscoutTypo>5%</DiscoutTypo>
+                    </CardBox>
+                  </DecriptionSection>
+                </Box>
+              </CardsContainer>
+            </Grid>
+            )
           }
-        
-          
-          
+
+
+
         </Grid>
 
       </MainCardSection>

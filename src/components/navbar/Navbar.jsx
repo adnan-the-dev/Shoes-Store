@@ -13,7 +13,9 @@ export const Navbar = () => {
     <>
       <MainBox >
         <LogoBox>
+          <Link to='/home'>
           <img style={{ width: '70px' }} src={logo} alt="" />
+          </Link>
           <Typography>Complete Order</Typography>
           <Typography>Pending Order</Typography>
           <Box>
