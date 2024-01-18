@@ -12,13 +12,15 @@ import Home from "./components/homePage/Home";
 import CategoryDetails from "./components/categoryDetailsPage/CategoryDetails";
 import { AddToCartPage } from "./components/addToCartPage/AddToCartPage";
 import { CheckOutPage } from "./components/checkOutPage/CheckOutPage";
+import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage";
 
 function App() {
   return (
     <>
       <ToastContainer />
       <Navbar />
-      <CheckOutPage/>
+      <PendingOrderPage />
+      {/* <CheckOutPage/> */}
       {/* <AddToCartPage/> */}
       {/* <CategoryDetails/> */}
       {/* <Home/> */}
