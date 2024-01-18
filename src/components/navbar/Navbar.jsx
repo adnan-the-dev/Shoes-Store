@@ -28,9 +28,11 @@ export const Navbar = () => {
               }
             </select>
           </Box>
+            <Typography>
           <Link to='/login'>
-            <Typography>Log in</Typography>
+              Log in
           </Link>
+              </Typography>
           <Typography>Admin panel</Typography>
         </LogoBox>
         <LogutBox>
