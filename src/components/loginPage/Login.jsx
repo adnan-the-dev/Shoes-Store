@@ -1,18 +1,12 @@
 import {
   Box,
-  Button,
-  Checkbox,
-  Divider,
-  FormControlLabel,
-  InputLabel,
   TextField,
-  Typography,
 } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { DividerBox, DontTag, GoogleBtnBox, GoogoleTag, HeadingBox, InputBox, InputLabelBox, LoginBtn, MainBoxLogin, SignUpHereTag, SignUpLineBox } from "./styled-component";
 import { Link } from "react-router-dom";
+import { DividerBox, DontTag, GoogleBtnBox, GoogoleTag, HeadingBox, InputBox, InputLabelBox, LoginBtn, MainBoxLogin, SignUpHereTag, SignUpLineBox } from "./styled-component";
 
 export const Login = () => {
   const [loginData, setLoginData] = useState([])

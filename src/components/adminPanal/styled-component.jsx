@@ -5,7 +5,8 @@ export const ContainerBox = styled(Box)({
     display:'flex',
     alignItems:'center',
     justifyContent:'center',
-    height:'100vh'
+    marginTop:'5rem'
+    // height:'100vh'
 })
 
 export const ChildBox = styled(Box)({
@@ -13,7 +14,7 @@ export const ChildBox = styled(Box)({
     flexDirection:'column',
     textAlign:'center',
     justifyContent:'center',
-    padding:'0px 18em',
+    padding:'0px 13rem',
     height: '400px',
     width:'50%',
     boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',

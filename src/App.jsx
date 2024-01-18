@@ -24,6 +24,7 @@ function App() {
         <Route path="/" element={<Main/>}/>
         <Route path="/login" element={<Login/>}/>
         <Route path="/register" element={<SignUp/>}/>
+        <Route path="/adminLog" element={<AdminPenal/>}/>
       </Routes>
       {/* <PendingOrderPage /> */}
       {/* <CheckOutPage/> */}

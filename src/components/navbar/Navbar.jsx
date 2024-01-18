@@ -28,12 +28,16 @@ export const Navbar = () => {
               }
             </select>
           </Box>
-            <Typography>
           <Link to='/login'>
+            <Typography style={{ fontWeight: '600', color: '#191919' }}>
               Log in
+            </Typography>
           </Link>
-              </Typography>
-          <Typography>Admin panel</Typography>
+          <Link to='/adminLog'>
+            <Typography style={{ fontWeight: '600', color: '#191919' }}>
+              Admin panel
+            </Typography>
+          </Link>
         </LogoBox>
         <LogutBox>
           <Typography>Log out</Typography>

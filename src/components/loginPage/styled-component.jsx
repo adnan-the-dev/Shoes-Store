@@ -2,6 +2,7 @@ import { Box, Button, Divider, InputLabel, Typography, styled } from "@mui/mater
 
 export const MainBoxLogin = styled(Box)({
     maxWidth: "600px",
+    maxHeight: "300px",
     margin: "auto",
     padding: "20px",
     borderRadius: "8px",
