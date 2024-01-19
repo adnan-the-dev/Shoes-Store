@@ -4,12 +4,10 @@ import { MdOutlineMail } from "react-icons/md";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { CiCircleCheck } from "react-icons/ci";
-import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AlertBox, AlertBoxParagraph, AlertBoxTage, ArrowBox, ButtonBox, CancelAndSaveBtn, EmailMainBox, InputLable, MailBox, MainInputCityBox, MainZipCodeBox, UserTextField } from "./styled-component";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import { postRegisterApi } from "../../api/signApi/signUpApi";
 
 export const SignUp = () => {
