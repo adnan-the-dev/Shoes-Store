@@ -6,11 +6,21 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
-import { DividerBox, DontTag, GoogleBtnBox, GoogoleTag, HeadingBox, InputBox, InputLabelBox, LoginBtn, MainBoxLogin, SignUpHereTag, SignUpLineBox } from "./styled-component";
+import {
+  DividerBox,
+  DontTag,
+  GoogleBtnBox,
+  GoogoleTag,
+  HeadingBox,
+  InputBox,
+  InputLabelBox,
+  LoginBtn,
+  MainBoxLogin,
+  SignUpHereTag,
+  SignUpLineBox
+} from "./styled-component";
 
 export const Login = () => {
-  const [loginData, setLoginData] = useState([])
-  console.log("Login successful", loginData);
   const {
     register,
     handleSubmit,
@@ -18,7 +28,7 @@ export const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    setLoginData(data)
+    console.log("Login successful", data);
   };
 
   return (

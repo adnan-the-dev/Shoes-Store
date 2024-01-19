@@ -2,7 +2,7 @@ import { baseUrl } from "../hendleApi";
 
 const urls = {
     register: `${baseUrl}/register`,
-    login: `${baseUrl}/login`,
+    login: `${baseUrl}/login/user`,
 };
 
 

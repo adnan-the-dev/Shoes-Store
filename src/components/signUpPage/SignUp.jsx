@@ -13,9 +13,6 @@ import axios from "axios";
 import { postRegisterApi } from "../../api/signApi/signUpApi";
 
 export const SignUp = () => {
-  // const [loginData, setLoginData] = useState([]);
-  // console.log(loginData);
-  const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL
 
   const navigate = useNavigate()
   const {
