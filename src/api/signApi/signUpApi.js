@@ -13,3 +13,15 @@ export const postLoginApi = async (data) => {
     const response = await handleApi(`${urls.login}`, "POST", body);
     return response;
 };
+
+export const getProductData = async () => {
+    const response = await handleApi(`${urls.products}`, "GET");
+    return response;
+};
+
+
+
+export const getSingleProductApi = async (id) => {
+    const response = await handleApi(`${urls.products}/${id}`, "GET");
+    return response;
+};

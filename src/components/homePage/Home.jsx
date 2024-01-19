@@ -1,52 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import banner from '../../assets/banner.webp'
-import Adidas from '../../assets/Adidas.webp'
-import Nike from '../../assets/Nike.webp'
-import Bata from '../../assets/Bata.webp'
-import Service from '../../assets/Service.webp'
-import { Box, Grid, Typography } from '@mui/material'
+import { Box, Grid } from '@mui/material'
 import { BoxText, CardBox, CardImage, CardText, CardTitle, CardsContainer, CarouselBox, CarouselBoxText, CarouselImage, CarouselText, CarouselTypography, CatagoryBox, CategoryTag, ChildCatagoryBox, DecriptionSection, DiscoutBox, DiscoutText, DiscoutTypo, ImageBox, MainCardSection, MainSilderBox, NewProductSection, Price, PriceSection, SilderTag, TypographyBox, TypographyText, ViewAllBox } from './styled-component'
 import Carousel from 'react-multi-carousel'
 import "react-multi-carousel/lib/styles.css";
-import { toast } from 'react-toastify'
 import { Link } from 'react-router-dom'
-
+import { getProductData } from '../../api/signApi/signUpApi'
+import { category } from '../arrayComponent/Array'
+import { NavLink } from 'react-router-dom/dist'
 
 export default function Home() {
-  const category = [
-    {
-      img: Adidas,
-      name: 'Adidas'
-    },
-    {
-      img: Nike,
-      name: 'Nike'
-    },
-    {
-      img: Bata,
-      name: 'Bata'
-    },
-    {
-      img: Service,
-      name: 'Service'
-    },
-    {
-      img: Service,
-      name: 'Service'
-    }, {
-      img: Service,
-      name: 'Service'
-    }, {
-      img: Service,
-      name: 'Service'
-    }, {
-      img: Service,
-      name: 'Service'
-    }, {
-      img: Service,
-      name: 'Service'
-    },
-  ]
+  const [prodcuts, setProdcuts] = useState([])
+
+  const getDataApi = async () => {
+    const res = await getProductData()
+    setProdcuts(res.data.result)
+  }
+  useEffect(() => {
+    getDataApi()
+  }, [])
+
+
+  const arr = prodcuts.map((item) => ({ cat: item.catagory, img: item.images[0].img1 }))
+  const unique = [...new Set(arr.map((item) => item.cat))]
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -66,6 +42,7 @@ export default function Home() {
       items: 1
     },
   };
+
   return (
     <>
       <Box>
@@ -74,13 +51,14 @@ export default function Home() {
 
       <CatagoryBox>
         {
-          category.slice(0, 4).map((item, i) => {
+          unique.map((item, i) => {
+            const imgUrl = arr.find((ob) => ob.cat == item)
             return (
               <ChildCatagoryBox key={i}>
-                <ImageBox component='img' src={item.img} alt="" />
+                <ImageBox component='img' src={imgUrl?.img} alt="" />
                 <CategoryTag>
-                  <Link to='/allIdName'>
-                    <TypographyBox sx={{color:'#000'}} onClick={() => toast.success(item.name)}>{item.name}</TypographyBox>
+                  <Link to={`/products/${item.toLocaleLowerCase()}`}>
+                    <TypographyBox sx={{ color: '#000' }}>{item}</TypographyBox>
                   </Link>
                 </CategoryTag>
               </ChildCatagoryBox>
@@ -96,19 +74,19 @@ export default function Home() {
         <CarouselBox>
           <Carousel style={{ textAlign: 'center' }} responsive={responsive}>
             {
-              category.map((item) => {
+              prodcuts.map((item) => {
                 return (
                   <Box>
-                    <Link to='/allIdName'>
-                      <CarouselImage component='img' src={item.img} alt="" />
-                    </Link>
+                    <NavLink style={{ textDecoration: 'none', color: "black" }} to={`/cart/${item._id}`}>
+                      <CarouselImage component='img' src={item.images[0].img1} alt="" />
                     <CarouselBoxText>
-                      <CarouselTypography>CLOUDFOAM PURE SHOES</CarouselTypography>
+                      <CarouselTypography>{item.productname}</CarouselTypography>
                       <DiscoutBox>
-                        <DiscoutText isActive={true}>Rs:75</DiscoutText>
+                        <DiscoutText isActive={true}>Rs:{item.price}</DiscoutText>
                         <DiscoutText>15% off</DiscoutText>
                       </DiscoutBox>
                     </CarouselBoxText>
+                    </NavLink>
                   </Box>
                 )
               })
@@ -127,26 +105,27 @@ export default function Home() {
         </NewProductSection>
 
         <Grid container>
+
           {
-            category.map((item) => <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-              <CardsContainer>
+            prodcuts.map((item, i) => <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
+              <CardsContainer key={i}>
                 <Box style={{ boxShadow: ' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px' }}>
-                  <Link to='/allIdName'>
-                    <CardImage component='img' src={item.img} alt="" />
-                  </Link>
+                  <NavLink style={{ textDecoration: 'none', color: "black" }} to={`/cart/${item._id}`}>
+                    <CardImage component='img' src={item.images[0].img1} alt="" />
                   <DecriptionSection>
                     <Box>
-                      <CardTitle>CLOUDFOAM PURE SHOES</CardTitle>
+                      <CardTitle>{item.productname}</CardTitle>
                     </Box>
-                    <CardText>Cloud White / Chalk White / Zero Metalic</CardText>
+                    <CardText>{item.mindetail}</CardText>
                     <CardBox>
                       <PriceSection>
                         <Price setColor={true}>12$</Price>
-                        <Price>71.25$</Price>
+                        <Price>{item.price}$</Price>
                       </PriceSection>
                       <DiscoutTypo>5%</DiscoutTypo>
                     </CardBox>
                   </DecriptionSection>
+                  </NavLink>
                 </Box>
               </CardsContainer>
             </Grid>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     ButtonAddCart,
     ChildContainer,
@@ -23,30 +23,63 @@ import {
 import Adidas from '../../assets/Adidas.webp'
 import racer from '../../assets/racer.webp'
 import { size } from '../arrayComponent/Array'
+import { getSingleProductApi } from '../../api/signApi/signUpApi'
+import { useParams } from 'react-router-dom/dist'
 export function AddToCartPage() {
+
+    const [singleProduct, setSingleProduct] = useState({})
+    const [loading, setLoading] = useState(true)
+    console.log(singleProduct);
+    const param = useParams()
+    const getDataApi = async () => {
+        const res = await getSingleProductApi(param.id)
+
+        if (res.status == 200) { setLoading(false); setSingleProduct(res.data) }
+
+    }
+    useEffect(() => {
+        getDataApi()
+    }, [])
+
+
+    console.log(loading, 'loading');
+
     return (
         <>
             <MainContainerBox>
                 <ChildContainer>
                     <ImageBox>
                         <ChildImage>
-                            <SmallImge component='img' src={Adidas} alt="" />
-                            <SmallImge isActive={true} component='img' src={Adidas} alt="" />
-                            <SmallImge isActive={true} component='img' src={Adidas} alt="" />
+                            {!loading &&
+                                <>
+                                    <SmallImge component='img' src={singleProduct?.images[0]?.img1} alt="" />
+                                    <SmallImge isActive={true} component='img' src={singleProduct?.images[0].img2} alt="" />
+                                    <SmallImge isActive={true} component='img' src={singleProduct?.images[0].img3} alt="" />
+                                </>
+
+                            }
+
                         </ChildImage>
-                        <LargeImage>
-                            <LargeImg component='img' src={racer} alt="" />
-                        </LargeImage>
+                        {!loading &&
+
+                            <LargeImage>
+                                <LargeImg component='img' src={singleProduct?.images[0]?.img1} alt="" />
+                            </LargeImage>
+                        }
                     </ImageBox>
 
                     <ImageTextBox>
-                        <TypographyBox>HOOPS 3.0 LOW CLASSIC VINTAGE SHOES</TypographyBox>
-                        <TypographyBox isActive={true}>Grey Two / Collegiate Green / Cloud White</TypographyBox>
+                        {
+                            <>
+                                <TypographyBox>{singleProduct?.productname}</TypographyBox>
+                                <TypographyBox isActive={true}>{singleProduct?.mindetail}</TypographyBox>
+                            </>
+                        }
 
                         <PriceSection>
                             <PriceBox>
                                 <Price>Price: $ 70</Price>
-                                <Price isActive={true}>Price: $ 58</Price>
+                                <Price isActive={true}>Price: $ {singleProduct?.price}</Price>
                             </PriceBox>
                             <Price isLine={true}>incl of taxes</Price>
                             <Price isLine={true}>(also incl all duty charges)</Price>
@@ -55,9 +88,9 @@ export function AddToCartPage() {
                                 <SizeTage>Select Size</SizeTage>
                                 <SizeGridBox>
                                     {
-                                        size.map((item) => {
+                                        singleProduct?.sizes?.map((item, i) => {
                                             return (
-                                                <ChildGridBox>{item}</ChildGridBox>
+                                                <ChildGridBox key={i}>{item}</ChildGridBox>
                                             )
                                         })
                                     }
@@ -68,7 +101,9 @@ export function AddToCartPage() {
 
                             <ProductDescription>
                                 <DescriptionHeading>product details</DescriptionHeading>
-                                <DescriptionHeading activeWidth={true}>very comfertable and soft shoes easy to wear  and good for walk</DescriptionHeading>
+                                {
+                                    <DescriptionHeading activeWidth={true}>{singleProduct?.fulldetail}</DescriptionHeading>
+                                }
                             </ProductDescription>
                         </PriceSection>
                     </ImageTextBox>

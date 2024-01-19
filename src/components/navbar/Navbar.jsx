@@ -1,20 +1,42 @@
 import { Autocomplete, Box, Typography } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../assets/logo.png'
 import { AiOutlineUser } from "react-icons/ai"
 import { RiShoppingBag2Line } from "react-icons/ri";
 import { LogoBox, LogutBox, MainBox } from '../sharedFile/styled-component';
 import { Link } from 'react-router-dom';
+import { getProductData } from '../../api/signApi/signUpApi'
+import { NavLink } from 'react-router-dom/dist';
+
 
 
 export const Navbar = () => {
-  const brandName = ['Addidas', 'Nike', 'Service', 'Bata']
+  const [prodcuts, setProdcuts] = useState([])
+
+  const getDataApi = async () => {
+    const res = await getProductData()
+    setProdcuts(res.data.result)
+  }
+  useEffect(() => {
+    getDataApi()
+  }, [])
+
+
+  const arr = prodcuts.map((item) => ({ cat: item.catagory, id: item._id }))
+  const unique = [...new Set(arr.map((item) => item.cat))]
+
+  console.log(unique, 'sdkfhsa');
+
+
+
+
+
   return (
     <>
       <MainBox >
         <LogoBox>
           <Link to='/home'>
-          <img style={{ width: '70px' }} src={logo} alt="" />
+            <img style={{ width: '70px' }} src={logo} alt="" />
           </Link>
           <Typography>Complete Order</Typography>
           <Typography>Pending Order</Typography>
@@ -22,9 +44,12 @@ export const Navbar = () => {
             <select style={{ padding: '8px', outline: 'none', fontSize: '1rem', border: 'none', backgroundColor: 'transparent' }}>
               <option label='Select brand'></option>
               {
-                brandName.map((item, i) => {
+                unique.map((item, i) => {
+                  // const productId = arr?.find((ob) => ob.id == item)
                   return (
-                    <option key={i} value="">{item}</option>
+                    // <NavLink>
+                      <option key={i} value="">{item}</option>
+                    // </NavLink>
                   )
                 })
               }

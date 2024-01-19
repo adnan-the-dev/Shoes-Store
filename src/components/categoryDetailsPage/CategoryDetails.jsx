@@ -1,11 +1,29 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { BrandNameBox, CardBox, CardBoxText, CardImage, CardText, CardTitle, CardsContainer, ChildBox, ChildCard, DecriptionSection, DiscoutTypo, MainBox, MainCardBox, Price, PriceSection, TagName, TextBox } from './styled-component'
 import { Box, Grid, TextField, Typography } from '@mui/material'
 import { IoSearch } from "react-icons/io5";
-import {array} from '../arrayComponent/Array'
+import { array } from '../arrayComponent/Array'
 import { category } from '../arrayComponent/Array'
+import { useParams } from 'react-router-dom';
+import { getProductData } from '../../api/signApi/signUpApi';
+import { Link, NavLink } from 'react-router-dom/dist';
 
 export default function CategoryDetails() {
+
+    const param = useParams()
+
+    const [prodcuts, setProdcuts] = useState([])
+
+    const getDataApi = async () => {
+        const res = await getProductData()
+        setProdcuts(res.data.result)
+    }
+
+    const filteredProducts = prodcuts.filter((prod) => prod.catagory.toLowerCase() === param.code)
+
+    useEffect(() => {
+        getDataApi()
+    }, [])
 
     return (
         <>
@@ -61,33 +79,35 @@ export default function CategoryDetails() {
                     <MainCardBox>
                         <ChildCard>
                             <CardBoxText>
-                                <TextBox>Addidas</TextBox>
+                                <TextBox>{param.code.toUpperCase()}</TextBox>
                                 <TextBox colorBox={true}>Check our new product</TextBox>
                             </CardBoxText>
                         </ChildCard>
 
                         <Grid container>
                             {
-                                category.map((item) => {
+                                filteredProducts.map((item) => {
                                     return (
                                         <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
                                             <CardsContainer>
-                                                <Box style={{ boxShadow: ' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px',cursor:'pointer' }}>
-                                                    <CardImage component='img' src={item.img} alt="" />
+                                                <NavLink style={{ textDecoration: 'none', color: "black" }} to={`/cart/${item._id}`}>
+                                                <Box style={{ boxShadow: ' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px', cursor: 'pointer' }}>
+                                                    <CardImage component='img' src={item.images[0].img1} alt="" />
                                                     <DecriptionSection>
                                                         <Box>
-                                                            <CardTitle>CLOUDFOAM PURE SHOES</CardTitle>
+                                                            <CardTitle>{item.productname}</CardTitle>
                                                         </Box>
-                                                        <CardText>Cloud White / Chalk White / Zero Metalic</CardText>
+                                                        <CardText>{item.mindetail}</CardText>
                                                         <CardBox>
                                                             <PriceSection>
                                                                 <Price setColor={true}>12$</Price>
-                                                                <Price>71.25$</Price>
+                                                                <Price>{item.price}$</Price>
                                                             </PriceSection>
                                                             <DiscoutTypo>5%</DiscoutTypo>
                                                         </CardBox>
                                                     </DecriptionSection>
                                                 </Box>
+                                                </NavLink>
                                             </CardsContainer>
                                         </Grid>
                                     )
