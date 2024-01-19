@@ -7,19 +7,38 @@ import { CiCircleCheck } from "react-icons/ci";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AlertBox, AlertBoxParagraph, AlertBoxTage, ArrowBox, ButtonBox, CancelAndSaveBtn, EmailMainBox, InputLable, MailBox, MainInputCityBox, MainZipCodeBox, UserTextField } from "./styled-component";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { postRegisterApi } from "../../api/signApi/signUpApi";
 
 export const SignUp = () => {
-  const [loginData, setLoginData] = useState([]);
-  console.log(loginData);
+  // const [loginData, setLoginData] = useState([]);
+  // console.log(loginData);
+  const baseUrl = import.meta.env.VITE_REACT_APP_BASE_URL
+
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
+    reset
   } = useForm();
 
-  const onSubmit = (data) => {
-    setLoginData(data);
+  const onSubmit = async (data) => {
+    const formData = {
+      username: data.username,
+      password: data.password,
+      email: data.email,
+      isAdmin: data.isAdmin,
+      street: data.address,
+      city: data.city,
+      state: data.stateProvince,
+      country: data.country,
+      postalCode: data.postalCode,
+    }
+    const res = await postRegisterApi(formData)
+        navigate('/login')
   };
-
   return (
     <>
       <Box>
@@ -144,7 +163,7 @@ export const SignUp = () => {
             <ButtonBox>
               <CiCircleCheck size={17} strokeWidth='1' color='#17d781' marginTop='1rem' />
               <CancelAndSaveBtn
-                type="submit"
+                onClick={() => reset()}
               >
                 Cancel
               </CancelAndSaveBtn>
