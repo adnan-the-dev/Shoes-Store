@@ -41,8 +41,6 @@ export const Login = () => {
       navigate('/home')
       toast.success("Login Successfully")
     } else {
-      console.log('tjhghfj', res);
-      console.log("Login successful", res.response.data);
       toast.error(res.response.data)
     }
   };
