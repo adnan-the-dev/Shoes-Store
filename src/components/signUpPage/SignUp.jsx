@@ -35,6 +35,7 @@ export const SignUp = () => {
     }
     const res = await postRegisterApi(formData)
         navigate('/login')
+        toast.success("User Register")
   };
   return (
     <>

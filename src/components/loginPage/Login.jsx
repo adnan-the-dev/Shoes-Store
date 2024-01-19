@@ -5,7 +5,7 @@ import {
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   DividerBox,
   DontTag,
@@ -19,16 +19,32 @@ import {
   SignUpHereTag,
   SignUpLineBox
 } from "./styled-component";
+import { postLoginApi } from "../../api/signApi/signUpApi";
+import { toast } from "react-toastify";
 
 export const Login = () => {
+  const navigate = useNavigate()
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("Login successful", data);
+  const onSubmit = async (data) => {
+    const formData = {
+      email: data.email,
+      password: data.password
+    }
+    const res = await postLoginApi(formData)
+    if (res.status == 200) {
+      navigate('/home')
+      toast.success("Login Successfully")
+    } else {
+      console.log('tjhghfj', res);
+      console.log("Login successful", res.response.data);
+      toast.error(res.response.data)
+    }
   };
 
   return (
@@ -61,15 +77,15 @@ export const Login = () => {
             OR
           </DividerBox>
           <InputBox>
-            <InputLabelBox>Password</InputLabelBox>
+            <InputLabelBox>Email</InputLabelBox>
             <TextField
               fullWidth
               type="text"
-              {...register("username", {
-                required: "Username is required",
+              {...register("email", {
+                required: "Email is required",
                 minLength: {
                   value: 3,
-                  message: "Username must be at least 3 characters",
+                  message: "Email must be at least 3 characters",
                 },
               })}
               error={Boolean(errors.username)}
