@@ -14,8 +14,13 @@ import { AddToCartPage } from "./components/addToCartPage/AddToCartPage";
 import { CheckOutPage } from "./components/checkOutPage/CheckOutPage";
 import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage";
 import { Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
+
+  const store = useSelector((state)=>state)
+
+  console.log(store, 'store');
   return (
     <>
       <ToastContainer />

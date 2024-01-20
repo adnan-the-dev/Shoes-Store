@@ -25,18 +25,36 @@ import racer from '../../assets/racer.webp'
 import { size } from '../arrayComponent/Array'
 import { getSingleProductApi } from '../../api/signApi/signUpApi'
 import { useParams } from 'react-router-dom/dist'
+import { setCart } from '../../redux/slices/cartSlice'
+import { useDispatch } from 'react-redux'
 export function AddToCartPage() {
 
+    const dispatch = useDispatch()
+
     const [singleProduct, setSingleProduct] = useState({})
+    const [selectSize,setSelectSize]=useState('')
+    console.log(singleProduct,'hellosskdfsdjf');
+
     const [loading, setLoading] = useState(true)
     console.log(singleProduct);
     const param = useParams()
     const getDataApi = async () => {
         const res = await getSingleProductApi(param.id)
-
         if (res.status == 200) { setLoading(false); setSingleProduct(res.data) }
-
     }
+
+
+    // const {productname} = singleProduct
+    // console.log(productname,'sdfskdfsdfoiwer');
+
+    const total = {
+        name:singleProduct.productname,
+        size:selectSize,
+        img:singleProduct?.images[0].img1,
+        price:singleProduct.price
+    }
+    console.log(total,'sdfsdfjsdfl');
+
     useEffect(() => {
         getDataApi()
     }, [])
@@ -90,13 +108,19 @@ export function AddToCartPage() {
                                     {
                                         singleProduct?.sizes?.map((item, i) => {
                                             return (
-                                                <ChildGridBox key={i}>{item}</ChildGridBox>
+                                                <ChildGridBox key={i} 
+                                                onClick={()=>setSelectSize(item)}
+                                                style={{
+                                                    backgroundColor:selectSize == item ? "black" : '',
+                                                    color:selectSize == item ? "#fff" : ''
+                                                }}
+                                                >{item}</ChildGridBox>
                                             )
                                         })
                                     }
                                 </SizeGridBox>
                             </SizeBox>
-                            <ButtonAddCart component='button'>Add to Cart</ButtonAddCart>
+                            <ButtonAddCart onClick={() => dispatch(setCart())} component='button'>Add to Cart</ButtonAddCart>
                             <ButtonAddCart active={true} component='button'>Online payment</ButtonAddCart>
 
                             <ProductDescription>
