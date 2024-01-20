@@ -7,6 +7,7 @@ import { LogoBox, LogutBox, MainBox } from '../sharedFile/styled-component';
 import { Link } from 'react-router-dom';
 import { getProductData } from '../../api/signApi/signUpApi'
 import { NavLink } from 'react-router-dom/dist';
+import {category} from '../arrayComponent/Array'
 
 
 
@@ -22,14 +23,8 @@ export const Navbar = () => {
   }, [])
 
 
-  const arr = prodcuts.map((item) => ({ cat: item.catagory, id: item._id }))
+  const arr = prodcuts.map((item) => ({ cat: item.catagory, id: item.images }))
   const unique = [...new Set(arr.map((item) => item.cat))]
-
-  console.log(unique, 'sdkfhsa');
-
-
-
-
 
   return (
     <>

@@ -48,7 +48,7 @@ export const SecondCartItem = styled(Box)({
 });
 
 export const CartImage = styled(Box)({
-    width: '13%',
+    width: '15%',
     maxWidth: '100%',
     height: 'auto',
     display: 'block',
@@ -75,7 +75,9 @@ export const Text = styled(Typography)(({ isActive, isLeft }) => ({
     lineHeight: isActive ? '1.25rem' : '1.75rem',
     marginBottom: '0.25rem!important',
     color: isActive ? '#939590' : '#42463b',
-    marginLeft: isLeft ? '5rem' : ''
+    marginLeft: isLeft ? '5rem' : '',
+    display:isLeft ? "flex" : '',
+    gap: isLeft ? "1rem" : ''
 }));
 
 

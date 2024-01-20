@@ -18,9 +18,7 @@ import { useSelector } from "react-redux";
 
 function App() {
 
-  const store = useSelector((state)=>state)
-
-  console.log(store, 'store');
+  
   return (
     <>
       <ToastContainer />
@@ -33,6 +31,7 @@ function App() {
         <Route path="/home" element={<Home/>}/>
         <Route path="/products/:code" element={<CategoryDetails/>}/>
         <Route path="/cart/:id" element={<AddToCartPage/>}/>
+        <Route path="/cart" element={<CheckOutPage/>}/>
       </Routes>
       {/* <PendingOrderPage /> */}
       {/* <CheckOutPage/> */}

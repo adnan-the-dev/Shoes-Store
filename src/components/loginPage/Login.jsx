@@ -38,10 +38,11 @@ export const Login = () => {
     }
     const res = await postLoginApi(formData)
     if (res.status == 200) {
+      localStorage.setItem('Users',JSON.stringify(res.data)) 
       navigate('/home')
       toast.success("Login Successfully")
     } else {
-      toast.error(res.response.data)
+      toast.error(res.data)
     }
   };
 

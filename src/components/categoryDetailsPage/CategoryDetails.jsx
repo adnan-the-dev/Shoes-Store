@@ -13,7 +13,6 @@ export default function CategoryDetails() {
     const param = useParams()
 
     const [prodcuts, setProdcuts] = useState([])
-
     const getDataApi = async () => {
         const res = await getProductData()
         setProdcuts(res.data.result)
@@ -91,22 +90,22 @@ export default function CategoryDetails() {
                                         <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
                                             <CardsContainer>
                                                 <NavLink style={{ textDecoration: 'none', color: "black" }} to={`/cart/${item._id}`}>
-                                                <Box style={{ boxShadow: ' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px', cursor: 'pointer' }}>
-                                                    <CardImage component='img' src={item.images[0].img1} alt="" />
-                                                    <DecriptionSection>
-                                                        <Box>
-                                                            <CardTitle>{item.productname}</CardTitle>
-                                                        </Box>
-                                                        <CardText>{item.mindetail}</CardText>
-                                                        <CardBox>
-                                                            <PriceSection>
-                                                                <Price setColor={true}>12$</Price>
-                                                                <Price>{item.price}$</Price>
-                                                            </PriceSection>
-                                                            <DiscoutTypo>5%</DiscoutTypo>
-                                                        </CardBox>
-                                                    </DecriptionSection>
-                                                </Box>
+                                                    <Box style={{ boxShadow: ' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px', cursor: 'pointer' }}>
+                                                        <CardImage component='img' src={item.images[0]} alt="" />
+                                                        <DecriptionSection>
+                                                            <Box>
+                                                                <CardTitle>{item.productname}</CardTitle>
+                                                            </Box>
+                                                            <CardText>{item.mindetail}</CardText>
+                                                            <CardBox>
+                                                                <PriceSection>
+                                                                    <Price setColor={true}>12$</Price>
+                                                                    <Price>{item.price}$</Price>
+                                                                </PriceSection>
+                                                                <DiscoutTypo>5%</DiscoutTypo>
+                                                            </CardBox>
+                                                        </DecriptionSection>
+                                                    </Box>
                                                 </NavLink>
                                             </CardsContainer>
                                         </Grid>

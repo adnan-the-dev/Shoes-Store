@@ -1,4 +1,4 @@
-import { Box, Typography, styled } from "@mui/material";
+import { Box, Button, Typography, styled } from "@mui/material";
 
 export const MainContainerBox = styled(Box)({
     paddingTop: '4rem',
@@ -113,7 +113,7 @@ export const ButtonAddCart = styled(Box)(({ active, isLine }) => ({
     border: active ? '2px solid' : 'none',
     width: '100%',
     height: '2.5rem',
-    marginTop: active ? '0.5rem' : '2.5rem',
+    marginTop: active ? '0.5rem' : '1rem',
     backgroundColor: active ? '' : '#000',
     color: active ? '#616570' : '#fff',
     verticalAlign: 'text-bottom!important',
@@ -122,12 +122,28 @@ export const ButtonAddCart = styled(Box)(({ active, isLine }) => ({
 
 
 export const ProductDescription = styled(Box)({
-    marginTop: '2.5rem',
-
+    marginTop: '2rem',
 });
 
 export const DescriptionHeading = styled(Typography)(({ activeWidth }) => ({
     fontWeight: '600',
     color:activeWidth ? '#616570': '#1c1b1c',
     maxWidth: activeWidth ? '300px' : ''
+}));
+
+
+export const CounterBox = styled(Box)({
+marginTop:'2rem',
+display:'flex',
+gap:'1rem',
+justifyContent:"center"
+});
+
+export const BtnBox = styled(Button)(({ active }) => ({
+height: '30px',
+border:'1px solid',
+borderRadius:'70px',
+fontWeight:'600',
+fontSize:'1rem',
+cursor:active ? 'none':'pointer'
 }));

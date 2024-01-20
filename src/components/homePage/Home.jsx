@@ -11,7 +11,6 @@ import { NavLink } from 'react-router-dom/dist'
 
 export default function Home() {
   const [prodcuts, setProdcuts] = useState([])
-
   const getDataApi = async () => {
     const res = await getProductData()
     setProdcuts(res.data.result)
@@ -21,7 +20,7 @@ export default function Home() {
   }, [])
 
 
-  const arr = prodcuts.map((item) => ({ cat: item.catagory, img: item.images[0].img1 }))
+  const arr = prodcuts.map((item) => ({ cat: item.catagory, img: item.images[0] }))
   const unique = [...new Set(arr.map((item) => item.cat))]
   const responsive = {
     superLargeDesktop: {
@@ -78,7 +77,7 @@ export default function Home() {
                 return (
                   <Box>
                     <NavLink style={{ textDecoration: 'none', color: "black" }} to={`/cart/${item._id}`}>
-                      <CarouselImage component='img' src={item.images[0].img1} alt="" />
+                      <CarouselImage component='img' src={item.images[0]} alt="" />
                     <CarouselBoxText>
                       <CarouselTypography>{item.productname}</CarouselTypography>
                       <DiscoutBox>
@@ -111,7 +110,7 @@ export default function Home() {
               <CardsContainer key={i}>
                 <Box style={{ boxShadow: ' rgba(0, 0, 0, 0.15) 0px 3px 3px 0px' }}>
                   <NavLink style={{ textDecoration: 'none', color: "black" }} to={`/cart/${item._id}`}>
-                    <CardImage component='img' src={item.images[0].img1} alt="" />
+                    <CardImage component='img' src={item.images[0]} alt="" />
                   <DecriptionSection>
                     <Box>
                       <CardTitle>{item.productname}</CardTitle>

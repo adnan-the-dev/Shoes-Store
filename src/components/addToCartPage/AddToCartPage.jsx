@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import {
+    BtnBox,
     ButtonAddCart,
     ChildContainer,
     ChildGridBox,
     ChildImage,
+    CounterBox,
     DescriptionHeading,
     ImageBox,
     ImageTextBox,
@@ -24,19 +26,22 @@ import Adidas from '../../assets/Adidas.webp'
 import racer from '../../assets/racer.webp'
 import { size } from '../arrayComponent/Array'
 import { getSingleProductApi } from '../../api/signApi/signUpApi'
-import { useParams } from 'react-router-dom/dist'
+import { useNavigate, useParams } from 'react-router-dom/dist'
 import { setCart } from '../../redux/slices/cartSlice'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 export function AddToCartPage() {
 
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [singleProduct, setSingleProduct] = useState({})
-    const [selectSize,setSelectSize]=useState('')
-    console.log(singleProduct,'hellosskdfsdjf');
+    const [selectSize, setSelectSize] = useState('')
+    const [quantity, setQuantity] = useState(1)
+
+
 
     const [loading, setLoading] = useState(true)
-    console.log(singleProduct);
     const param = useParams()
     const getDataApi = async () => {
         const res = await getSingleProductApi(param.id)
@@ -44,24 +49,27 @@ export function AddToCartPage() {
     }
 
 
-    // const {productname} = singleProduct
-    // console.log(productname,'sdfskdfsdfoiwer');
+    function addToCart() {
+        const total = {
+            name: singleProduct.productname,
+            mindetail: singleProduct.mindetail,
+            productId: singleProduct._id,
+            img: singleProduct?.images,
+            price: singleProduct.price,
+            size: selectSize,
+            quantity: quantity
+        }
+            if(!selectSize == ''){
+                dispatch(setCart(total));
+                navigate('/cart')
+            } else{
 
-    const total = {
-        name:singleProduct.productname,
-        size:selectSize,
-        img:singleProduct?.images[0].img1,
-        price:singleProduct.price
+                toast.error("Select Size")
+            }
     }
-    console.log(total,'sdfsdfjsdfl');
-
     useEffect(() => {
         getDataApi()
     }, [])
-
-
-    console.log(loading, 'loading');
-
     return (
         <>
             <MainContainerBox>
@@ -70,9 +78,9 @@ export function AddToCartPage() {
                         <ChildImage>
                             {!loading &&
                                 <>
-                                    <SmallImge component='img' src={singleProduct?.images[0]?.img1} alt="" />
-                                    <SmallImge isActive={true} component='img' src={singleProduct?.images[0].img2} alt="" />
-                                    <SmallImge isActive={true} component='img' src={singleProduct?.images[0].img3} alt="" />
+                                    <SmallImge component='img' src={singleProduct?.images[0]} alt="" />
+                                    <SmallImge isActive={true} component='img' src={singleProduct?.images[1]} alt="" />
+                                    <SmallImge isActive={true} component='img' src={singleProduct?.images[2]} alt="" />
                                 </>
 
                             }
@@ -81,7 +89,7 @@ export function AddToCartPage() {
                         {!loading &&
 
                             <LargeImage>
-                                <LargeImg component='img' src={singleProduct?.images[0]?.img1} alt="" />
+                                <LargeImg component='img' src={singleProduct?.images[0]} alt="" />
                             </LargeImage>
                         }
                     </ImageBox>
@@ -108,19 +116,30 @@ export function AddToCartPage() {
                                     {
                                         singleProduct?.sizes?.map((item, i) => {
                                             return (
-                                                <ChildGridBox key={i} 
-                                                onClick={()=>setSelectSize(item)}
-                                                style={{
-                                                    backgroundColor:selectSize == item ? "black" : '',
-                                                    color:selectSize == item ? "#fff" : ''
-                                                }}
+                                                <ChildGridBox key={i}
+                                                    onClick={() => setSelectSize(item)}
+                                                    style={{
+                                                        backgroundColor: selectSize == item ? "black" : '',
+                                                        color: selectSize == item ? "#fff" : ''
+                                                    }}
                                                 >{item}</ChildGridBox>
                                             )
                                         })
                                     }
                                 </SizeGridBox>
                             </SizeBox>
-                            <ButtonAddCart onClick={() => dispatch(setCart())} component='button'>Add to Cart</ButtonAddCart>
+
+
+                            <CounterBox>
+                                <BtnBox onClick={() => setQuantity(quantity > 1 ? quantity - 1 : quantity = 0)}>-</BtnBox>
+                                <BtnBox active={true}>{quantity}</BtnBox>
+                                <BtnBox onClick={() => setQuantity(quantity + 1)}>+</BtnBox>
+                            </CounterBox>
+
+
+
+
+                            <ButtonAddCart onClick={addToCart} component='button'>Add to Cart</ButtonAddCart>
                             <ButtonAddCart active={true} component='button'>Online payment</ButtonAddCart>
 
                             <ProductDescription>
