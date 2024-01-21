@@ -29,6 +29,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../../redux/slices/cartSlice';
 import { placeOrderApi } from '../../api/orders/orders';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 export const CheckOutPage = () => {
     const navigate = useNavigate()
@@ -40,7 +41,6 @@ export const CheckOutPage = () => {
 
 
     const store = useSelector((state) => state.cart.cart)
-
     let totalAmount = 0
     for (let i = 0; i < store.length; i++) {
         const qut = store[i].quantity;
@@ -48,10 +48,7 @@ export const CheckOutPage = () => {
         totalAmount += price * qut
     }
 
-    const cartItems = store.map((item) => ({ itemId: item.productId, quantity: item.quantity, size: item.size }))
-    console.log(cartItems, 'cartItems')
-
- 
+    const cartItems = store.map((item) => ({ itemId: item.productId, quantity: item.quantity, size: item.size ,itemPrice:item.price}))
 
     const placeOrderFunc = async () => {
         const placeOrder = {
@@ -61,15 +58,12 @@ export const CheckOutPage = () => {
             items: cartItems
         }
         const res = await placeOrderApi(placeOrder)
-        console.log(res.data,'skdjflskd');
-        navigate('/pendingOrders')
+        if (res.status == 200) {
+            navigate('/pendingOrders')
+        } else {
+            toast.error("unable to place order")
+        }
     }
-
-
-
-    // useEffect(() => {
-    //     placeOrderFunc()
-    // }, [])
     return (
         <>
             <MainShoppingCartBox>
@@ -134,7 +128,7 @@ export const CheckOutPage = () => {
                             </SummaryDescription>
                         </SummaryChildBox>
                         <Box>
-                            <CheckoutBtn onClick={()=>placeOrderFunc()}>Checkout</CheckoutBtn>
+                            <CheckoutBtn onClick={() => placeOrderFunc()}>Checkout</CheckoutBtn>
                         </Box>
                     </MainSummaryBox>
                 </MainCartItemBox>

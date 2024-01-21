@@ -7,3 +7,16 @@ export const placeOrderApi = async (data) => {
     const response = await handleApi(`${urls.order}`, "POST" , body);
     return response;
 };
+
+
+
+export const getAllOrders = async () => {
+    const response = await handleApi(`${urls.order}`, "GET");
+    return response;
+};
+
+
+export const chagneStatusOrder = async (id) => {
+    const response = await handleApi(`${urls.order}/${id}/complete`, "PUT");
+    return response;
+};
