@@ -17,22 +17,20 @@ import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function App() {
-
-  
   return (
     <>
       <ToastContainer />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Main/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<SignUp/>}/>
-        <Route path="/adminLog" element={<AdminPenal/>}/>
-        <Route path="/home" element={<Home/>}/>
-        <Route path="/products/:code" element={<CategoryDetails/>}/>
-        <Route path="/cart/:id" element={<AddToCartPage/>}/>
-        <Route path="/cart" element={<CheckOutPage/>}/>
-        <Route path="/pendingOrders" element={<PendingOrderPage/>}/>
+        <Route path="/" element={<Main />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<SignUp />} />
+        <Route path="/adminLog" element={<AdminPenal />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/products/:code" element={<CategoryDetails />} />
+        <Route path="/cart/:id" element={<AddToCartPage />} />
+        <Route path="/cart" element={<CheckOutPage />} />
+        <Route path="/pendingOrders" element={<PendingOrderPage />} />
       </Routes>
     </>
   );
