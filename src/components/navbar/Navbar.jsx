@@ -7,7 +7,7 @@ import { LogoBox, LogutBox, MainBox } from '../sharedFile/styled-component';
 import { Link } from 'react-router-dom';
 import { getProductData } from '../../api/signApi/signUpApi'
 import { NavLink } from 'react-router-dom/dist';
-import {category} from '../arrayComponent/Array'
+import { category } from '../arrayComponent/Array'
 
 
 
@@ -43,7 +43,7 @@ export const Navbar = () => {
                   // const productId = arr?.find((ob) => ob.id == item)
                   return (
                     // <NavLink>
-                      <option key={i} value="">{item}</option>
+                    <option key={i} value="">{item}</option>
                     // </NavLink>
                   )
                 })
@@ -64,7 +64,9 @@ export const Navbar = () => {
         <LogutBox>
           <Typography>Log out</Typography>
           <AiOutlineUser />
-          <RiShoppingBag2Line />
+          <NavLink to='/cart' style={{color:'black'}}>
+            <RiShoppingBag2Line />
+          </NavLink>
         </LogutBox>
       </MainBox >
     </>

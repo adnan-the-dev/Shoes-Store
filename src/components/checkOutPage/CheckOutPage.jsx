@@ -28,8 +28,10 @@ import { category } from '../arrayComponent/Array'
 import { useDispatch, useSelector } from 'react-redux';
 import { removeItem } from '../../redux/slices/cartSlice';
 import { placeOrderApi } from '../../api/orders/orders';
+import { useNavigate } from 'react-router-dom';
 
 export const CheckOutPage = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch();
     const userData = localStorage.getItem("Users");
     const user = JSON.parse(userData);
@@ -38,7 +40,6 @@ export const CheckOutPage = () => {
 
 
     const store = useSelector((state) => state.cart.cart)
-    console.log(store, 'store')
 
     let totalAmount = 0
     for (let i = 0; i < store.length; i++) {
@@ -48,6 +49,7 @@ export const CheckOutPage = () => {
     }
 
     const cartItems = store.map((item) => ({ itemId: item.productId, quantity: item.quantity, size: item.size }))
+    console.log(cartItems, 'cartItems')
 
  
 
@@ -59,7 +61,8 @@ export const CheckOutPage = () => {
             items: cartItems
         }
         const res = await placeOrderApi(placeOrder)
-        console.log(res);
+        console.log(res.data,'skdjflskd');
+        navigate('/pendingOrders')
     }
 
 

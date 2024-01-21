@@ -32,10 +32,8 @@ function App() {
         <Route path="/products/:code" element={<CategoryDetails/>}/>
         <Route path="/cart/:id" element={<AddToCartPage/>}/>
         <Route path="/cart" element={<CheckOutPage/>}/>
+        <Route path="/pendingOrders" element={<PendingOrderPage/>}/>
       </Routes>
-      {/* <PendingOrderPage /> */}
-      {/* <CheckOutPage/> */}
-      {/* <AddToCartPage/> */}
     </>
   );
 }
