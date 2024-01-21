@@ -54,11 +54,11 @@ export const PendinBoxBtn = styled(Box)(({ status }) => ({
   fontWeight: "600",
   cursor: "pointer",
   padding: "0.5rem",
-  border: status ?  "2px solid #459f2e": "2px solid #e7bd18",
+  border: status ? "2px solid #459f2e" : "2px solid #e7bd18",
   borderRadius: "7px",
-  color: status ? "#459f2e": "#e7bd18",
+  color: status ? "#459f2e" : "#e7bd18",
   "&:hover": {
-    color:status ? '#459f2e' : "#000",
+    color: status ? "#459f2e" : "#000",
   },
 }));
 

@@ -5,19 +5,27 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
 import { CiCircleCheck } from "react-icons/ci";
 import { useForm } from "react-hook-form";
-import { AlertBox, AlertBoxParagraph, AlertBoxTage, ArrowBox, ButtonBox, CancelAndSaveBtn, EmailMainBox, InputLable, MailBox, MainInputCityBox, MainZipCodeBox, UserTextField } from "./styled-component";
+import {
+  AlertBox,
+  AlertBoxParagraph,
+  AlertBoxTage,
+  ArrowBox,
+  ButtonBox,
+  CancelAndSaveBtn,
+  EmailMainBox,
+  InputLable,
+  MailBox,
+  MainInputCityBox,
+  MainZipCodeBox,
+  UserTextField,
+} from "./styled-component";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { postRegisterApi } from "../../api/signApi/signUpApi";
 
 export const SignUp = () => {
-
-  const navigate = useNavigate()
-  const {
-    register,
-    handleSubmit,
-    reset
-  } = useForm();
+  const navigate = useNavigate();
+  const { register, handleSubmit, reset } = useForm();
 
   const onSubmit = async (data) => {
     const formData = {
@@ -30,10 +38,10 @@ export const SignUp = () => {
       state: data.stateProvince,
       country: data.country,
       postalCode: data.postalCode,
-    }
-    const res = await postRegisterApi(formData)
-        navigate('/login')
-        toast.success("User Register")
+    };
+    const res = await postRegisterApi(formData);
+    navigate("/login");
+    toast.success("User Register Successfully");
   };
   return (
     <>
@@ -48,7 +56,7 @@ export const SignUp = () => {
             borderRadius: "8px",
             boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
             backgroundColor: "white",
-            "& fieldset": { border: 'none' },
+            "& fieldset": { border: "none" },
           }}
         >
           <Typography
@@ -63,10 +71,9 @@ export const SignUp = () => {
           >
             Register
             <IoIosInformationCircleOutline size={18} />
-
           </Typography>
           <Divider sx={{ marginTop: "12px" }} />
-          <Box style={{ marginTop: "17px", padding: '12px 0px' }}>
+          <Box style={{ marginTop: "17px", padding: "12px 0px" }}>
             <InputLable>First Name</InputLable>
             <UserTextField
               fullWidth
@@ -154,25 +161,28 @@ export const SignUp = () => {
             />
             <AlertBox>
               <AlertBoxTage>Alerts</AlertBoxTage>
-              <AlertBoxParagraph>Get updates of any new activity or features. Turn on/off your preferences</AlertBoxParagraph>
+              <AlertBoxParagraph>
+                Get updates of any new activity or features. Turn on/off your
+                preferences
+              </AlertBoxParagraph>
             </AlertBox>
             <ButtonBox>
-              <CiCircleCheck size={17} strokeWidth='1' color='#17d781' marginTop='1rem' />
-              <CancelAndSaveBtn
-                onClick={() => reset()}
-              >
+              <CiCircleCheck
+                size={17}
+                strokeWidth="1"
+                color="#17d781"
+                marginTop="1rem"
+              />
+              <CancelAndSaveBtn onClick={() => reset()}>
                 Cancel
               </CancelAndSaveBtn>
-              <CancelAndSaveBtn
-                type="submit"
-                savebtn={true}
-              >
+              <CancelAndSaveBtn type="submit" savebtn={true}>
                 Save
               </CancelAndSaveBtn>
             </ButtonBox>
           </Box>
         </Box>
-      </Box >
+      </Box>
     </>
   );
 };

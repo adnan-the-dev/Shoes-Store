@@ -7,17 +7,17 @@ const CartSlice = createSlice({
   },
   reducers: {
     setCart: (state, action) => {
-      state.cart = [...state.cart, action.payload]
+      state.cart = [...state.cart, action.payload];
     },
     removeItem: (state, action) => {
-      const index = action.payload
-      state.cart.splice(index, 1)
+      const index = action.payload;
+      state.cart.splice(index, 1);
     },
-    resetCart: (state, action)=>{
-      state.cart = []
-    }
+    resetCart: (state, action) => {
+      state.cart = [];
+    },
   },
 });
 
-export const { setCart , removeItem, resetCart} = CartSlice.actions;
+export const { setCart, removeItem, resetCart } = CartSlice.actions;
 export default CartSlice.reducer;

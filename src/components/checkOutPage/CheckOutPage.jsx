@@ -49,8 +49,8 @@ export const CheckOutPage = () => {
     quantity: item.quantity,
     size: item.size,
     itemPrice: item.price,
-    itemImage:item.img[0],
-    itemName:item.name
+    itemImage: item.img[0],
+    itemName: item.name,
   }));
 
   const placeOrderFunc = async () => {
@@ -62,17 +62,17 @@ export const CheckOutPage = () => {
     };
     const res = await placeOrderApi(placeOrder);
     if (res.status == 200) {
-      toast.success('Order Placed')
+      toast.success("Order Placed");
       navigate("/home");
     } else {
       toast.error("unable to place order");
     }
   };
 
-  const order = () =>{
+  const order = () => {
     placeOrderFunc();
-    dispatch(resetCart())
-  }
+    dispatch(resetCart());
+  };
   return (
     <>
       <MainShoppingCartBox>
@@ -139,9 +139,7 @@ export const CheckOutPage = () => {
               </SummaryDescription>
             </SummaryChildBox>
             <Box>
-              <CheckoutBtn onClick={() =>order()}>
-                Checkout
-              </CheckoutBtn>
+              <CheckoutBtn onClick={() => order()}>Checkout</CheckoutBtn>
             </Box>
           </MainSummaryBox>
         </MainCartItemBox>

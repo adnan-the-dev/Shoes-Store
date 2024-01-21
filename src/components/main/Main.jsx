@@ -1,17 +1,15 @@
 import { Box, Button, Grid, Typography } from "@mui/material";
 import React from "react";
-import { Basic, ButtonBox, ImageBox, TagHeading } from "../sharedFile/styled-component";
+import {
+  Basic,
+  ButtonBox,
+  ImageBox,
+  TagHeading,
+} from "../sharedFile/styled-component";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Main() {
-  const loginRoute = () => {
-    toast.success('Hello login')
-  }
-
-  const adminPanel = () => {
-    toast.success('Hello admin')
-  }
   return (
     <>
       <Grid container>
@@ -25,12 +23,16 @@ export default function Main() {
               Cumque debitis dignissimos id quam vel!
             </Typography>
             <ButtonBox>
-              <Link to="/login">
+              <NavLink to="/login">
                 <Button variant="contained" color="success">
                   Log in
                 </Button>
-              </Link>
-              <Button variant="outlined" color="primary" onClick={() => { adminPanel() }}> Admin panel</Button>
+              </NavLink>
+              <NavLink to="/adminLog">
+                <Button variant="outlined" color="primary">
+                  Admin panel
+                </Button>
+              </NavLink>
             </ButtonBox>
           </Basic>
         </Grid>

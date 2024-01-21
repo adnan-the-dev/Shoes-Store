@@ -17,7 +17,6 @@ export const chagneStatusOrder = async (id) => {
   return response;
 };
 
-
 export const completeOrders = async () => {
   const response = await handleApi(`${urls.order}/complete`, "GET");
   return response;

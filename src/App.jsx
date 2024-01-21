@@ -16,6 +16,7 @@ import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CompleteOrders } from "./components/completeOrders/CompleteOrders";
+import { Private } from "./components/privateRoute/Private";
 
 function App() {
   return (
@@ -27,16 +28,59 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<SignUp />} />
         <Route path="/adminLog" element={<AdminPenal />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/products/:code" element={<CategoryDetails />} />
-        <Route path="/cart/:id" element={<AddToCartPage />} />
-        <Route path="/cart" element={<CheckOutPage />} />
-        <Route path="/pendingOrders" element={<PendingOrderPage />} />
-        <Route path="/completeOrders" element={<CompleteOrders />} />
-        
+        <Route
+          path="/home"
+          element={
+            <Private>
+              <Home />
+            </Private>
+          }
+        />
+        <Route
+          path="/products/:code"
+          element={
+            <Private>
+              <CategoryDetails />
+            </Private>
+          }
+        />
+        <Route
+          path="/cart/:id"
+          element={
+            <Private>
+              <AddToCartPage />
+            </Private>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <Private>
+              <CheckOutPage />
+            </Private>
+          }
+        />
+        <Route
+          path="/pendingOrders"
+          element={
+            <Private>
+              <PendingOrderPage />
+            </Private>
+          }
+        />
+        <Route
+          path="/completeOrders"
+          element={
+            <Private>
+              <CompleteOrders />
+            </Private>
+          }
+        />
       </Routes>
     </>
   );
 }
-
+{
+  /* <Redirect from="/" to="/login" /> */
+}
 export default App;

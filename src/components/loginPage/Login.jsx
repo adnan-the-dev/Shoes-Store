@@ -1,7 +1,4 @@
-import {
-  Box,
-  TextField,
-} from "@mui/material";
+import { Box, TextField } from "@mui/material";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
@@ -17,13 +14,13 @@ import {
   LoginBtn,
   MainBoxLogin,
   SignUpHereTag,
-  SignUpLineBox
+  SignUpLineBox,
 } from "./styled-component";
 import { postLoginApi } from "../../api/signApi/signUpApi";
 import { toast } from "react-toastify";
 
 export const Login = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const {
     register,
@@ -34,47 +31,34 @@ export const Login = () => {
   const onSubmit = async (data) => {
     const formData = {
       email: data.email,
-      password: data.password
-    }
-    const res = await postLoginApi(formData)
+      password: data.password,
+    };
+    const res = await postLoginApi(formData);
     if (res.status == 200) {
-      localStorage.setItem('Users',JSON.stringify(res.data)) 
-      navigate('/home')
-      toast.success("Login Successfully")
+      localStorage.setItem("Users", JSON.stringify(res.data));
+      navigate("/home");
+      toast.success("Login Successfully");
     } else {
-      toast.error(res.data)
+      toast.error("User not found");
     }
   };
 
   return (
     <>
       <MainBoxLogin>
-        <Box
-          component="form"
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <HeadingBox>
-            Login to your account
-          </HeadingBox>
+        <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+          <HeadingBox>Login to your account</HeadingBox>
           <SignUpLineBox>
-            <DontTag>
-              Don't have an account?
-            </DontTag>
-            <Link to='/register'>
-              <SignUpHereTag>
-                Sign up here
-              </SignUpHereTag>
+            <DontTag>Don't have an account?</DontTag>
+            <Link to="/register">
+              <SignUpHereTag>Sign up here</SignUpHereTag>
             </Link>
           </SignUpLineBox>
           <GoogleBtnBox>
             <FcGoogle size={30} />
-            <GoogoleTag>
-              Continue with Google
-            </GoogoleTag>
+            <GoogoleTag>Continue with Google</GoogoleTag>
           </GoogleBtnBox>
-          <DividerBox>
-            OR
-          </DividerBox>
+          <DividerBox>OR</DividerBox>
           <InputBox>
             <InputLabelBox>Email</InputLabelBox>
             <TextField
@@ -108,11 +92,7 @@ export const Login = () => {
               sx={{ mt: 2 }}
             />
           </InputBox>
-          <LoginBtn
-            type="submit"
-          >
-            Login
-          </LoginBtn>
+          <LoginBtn type="submit">Login</LoginBtn>
         </Box>
       </MainBoxLogin>
     </>

@@ -12,6 +12,7 @@ import {
 } from "./styled-component";
 import { Box } from "@mui/material";
 import { chagneStatusOrder, getAllOrders } from "../../api/orders/orders";
+import { toast } from "react-toastify";
 
 export const PendingOrderPage = () => {
   const [data, setData] = useState([]);
@@ -19,6 +20,13 @@ export const PendingOrderPage = () => {
     const res = await getAllOrders();
     setData(res.data.result);
   };
+
+  const statusChange = async (id) => {
+    const res = await chagneStatusOrder(id);
+    allOrdersApi();
+    toast.success("Order Complete");
+  };
+
   useEffect(() => {
     allOrdersApi();
   }, []);
@@ -55,19 +63,13 @@ export const PendingOrderPage = () => {
                     {order.status == "complete" ? (
                       <PendinBoxBtn
                         status={true}
-                        onClick={async () => {
-                          const resus = await chagneStatusOrder(order._id);
-                          allOrdersApi();
-                        }}
+                        onClick={async () => statusChange(order._id)}
                       >
                         {order.status}
                       </PendinBoxBtn>
                     ) : (
                       <PendinBoxBtn
-                        onClick={async () => {
-                          const resus = await chagneStatusOrder(order._id);
-                          allOrdersApi();
-                        }}
+                        onClick={async () => statusChange(order._id)}
                       >
                         {order.status}
                       </PendinBoxBtn>
