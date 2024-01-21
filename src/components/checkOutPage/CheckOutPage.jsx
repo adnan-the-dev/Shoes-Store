@@ -26,7 +26,7 @@ import { MdDelete } from "react-icons/md";
 
 import { category } from "../arrayComponent/Array";
 import { useDispatch, useSelector } from "react-redux";
-import { removeItem } from "../../redux/slices/cartSlice";
+import { removeItem, resetCart } from "../../redux/slices/cartSlice";
 import { placeOrderApi } from "../../api/orders/orders";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -49,6 +49,8 @@ export const CheckOutPage = () => {
     quantity: item.quantity,
     size: item.size,
     itemPrice: item.price,
+    itemImage:item.img[0],
+    itemName:item.name
   }));
 
   const placeOrderFunc = async () => {
@@ -60,11 +62,17 @@ export const CheckOutPage = () => {
     };
     const res = await placeOrderApi(placeOrder);
     if (res.status == 200) {
-      navigate("/pendingOrders");
+      toast.success('Order Placed')
+      navigate("/home");
     } else {
       toast.error("unable to place order");
     }
   };
+
+  const order = () =>{
+    placeOrderFunc();
+    dispatch(resetCart())
+  }
   return (
     <>
       <MainShoppingCartBox>
@@ -131,7 +139,7 @@ export const CheckOutPage = () => {
               </SummaryDescription>
             </SummaryChildBox>
             <Box>
-              <CheckoutBtn onClick={() => placeOrderFunc()}>
+              <CheckoutBtn onClick={() =>order()}>
                 Checkout
               </CheckoutBtn>
             </Box>

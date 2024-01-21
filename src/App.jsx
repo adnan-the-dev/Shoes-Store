@@ -15,6 +15,7 @@ import { CheckOutPage } from "./components/checkOutPage/CheckOutPage";
 import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage";
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CompleteOrders } from "./components/completeOrders/CompleteOrders";
 
 function App() {
   return (
@@ -31,6 +32,8 @@ function App() {
         <Route path="/cart/:id" element={<AddToCartPage />} />
         <Route path="/cart" element={<CheckOutPage />} />
         <Route path="/pendingOrders" element={<PendingOrderPage />} />
+        <Route path="/completeOrders" element={<CompleteOrders />} />
+        
       </Routes>
     </>
   );

@@ -10,17 +10,20 @@ import {
   TagBox,
   Text,
 } from "./styled-component";
-import { Box } from "@mui/material";
-import { chagneStatusOrder, getAllOrders } from "../../api/orders/orders";
+import { Box, TextField } from "@mui/material";
+import { MdDelete } from "react-icons/md";
+import runShoes from "../../assets/runShoes.webp";
+import { category } from "../arrayComponent/Array";
+import { completeOrders } from "../../api/orders/orders";
 
-export const PendingOrderPage = () => {
+export const CompleteOrders = () => {
   const [data, setData] = useState([]);
-  const allOrdersApi = async () => {
-    const res = await getAllOrders();
+  const getAllOrdersApi = async () => {
+    const res = await completeOrders();
     setData(res.data.result);
   };
   useEffect(() => {
-    allOrdersApi();
+    getAllOrdersApi();
   }, []);
 
   return (
@@ -52,26 +55,7 @@ export const PendingOrderPage = () => {
                     </SecondBox>
                   </Box>
                   <Box>
-                    {order.status == "complete" ? (
-                      <PendinBoxBtn
-                        status={true}
-                        onClick={async () => {
-                          const resus = await chagneStatusOrder(order._id);
-                          allOrdersApi();
-                        }}
-                      >
-                        {order.status}
-                      </PendinBoxBtn>
-                    ) : (
-                      <PendinBoxBtn
-                        onClick={async () => {
-                          const resus = await chagneStatusOrder(order._id);
-                          allOrdersApi();
-                        }}
-                      >
-                        {order.status}
-                      </PendinBoxBtn>
-                    )}
+                    <PendinBoxBtn status={true}>{order.status}</PendinBoxBtn>
                   </Box>
                 </MainDeleteBox>
               </CartTextBox>

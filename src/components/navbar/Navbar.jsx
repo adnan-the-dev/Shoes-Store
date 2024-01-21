@@ -10,8 +10,11 @@ import { NavLink } from "react-router-dom/dist";
 import { category } from "../arrayComponent/Array";
 
 export const Navbar = () => {
-  const [prodcuts, setProdcuts] = useState([]);
+//   const getuser = localStorage.getItem("Users");
+//   const user = getuser.username
+// console.log(user,'kshdf');
 
+  const [prodcuts, setProdcuts] = useState([]);
   const getDataApi = async () => {
     const res = await getProductData();
     setProdcuts(res.data.result);
@@ -20,6 +23,7 @@ export const Navbar = () => {
     getDataApi();
   }, []);
 
+
   const arr = prodcuts.map((item) => ({ cat: item.catagory, id: item.images }));
   const unique = [...new Set(arr.map((item) => item.cat))];
 
@@ -27,11 +31,21 @@ export const Navbar = () => {
     <>
       <MainBox>
         <LogoBox>
-          <Link to="/home">
+          <NavLink to="/home">
             <img style={{ width: "70px" }} src={logo} alt="" />
-          </Link>
-          <Typography>Complete Order</Typography>
-          <Typography>Pending Order</Typography>
+          </NavLink>
+          <NavLink
+            to="/completeOrders"
+            style={{ textDecoration: "none", color: "#191919" }}
+          >
+            <Typography>Complete Order</Typography>
+          </NavLink>
+          <NavLink
+            to="/pendingOrders"
+            style={{ textDecoration: "none", color: "#191919" }}
+          >
+            <Typography>Pending Order</Typography>
+          </NavLink>
           <Box>
             <select
               style={{
@@ -55,16 +69,18 @@ export const Navbar = () => {
               })}
             </select>
           </Box>
-          <Link to="/login">
-            <Typography style={{ fontWeight: "600", color: "#191919" }}>
-              Log in
-            </Typography>
-          </Link>
-          <Link to="/adminLog">
-            <Typography style={{ fontWeight: "600", color: "#191919" }}>
-              Admin panel
-            </Typography>
-          </Link>
+          <NavLink
+            to="/login"
+            style={{ textDecoration: "none", color: "#191919" }}
+          >
+            <Typography style={{ fontWeight: "600" }}>Log in</Typography>
+          </NavLink>
+          <NavLink
+            to="/adminLog"
+            style={{ textDecoration: "none", color: "#191919" }}
+          >
+            <Typography style={{ fontWeight: "600" }}>Admin panel</Typography>
+          </NavLink>
         </LogoBox>
         <LogutBox>
           <Typography>Log out</Typography>
