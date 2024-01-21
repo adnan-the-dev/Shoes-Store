@@ -4,10 +4,8 @@ import logo from "../../assets/logo.png";
 import { AiOutlineUser } from "react-icons/ai";
 import { RiShoppingBag2Line } from "react-icons/ri";
 import { LogoBox, LogutBox, MainBox } from "../sharedFile/styled-component";
-import { Link } from "react-router-dom";
 import { getProductData } from "../../api/signApi/signUpApi";
 import { NavLink } from "react-router-dom/dist";
-import { category } from "../arrayComponent/Array";
 
 export const Navbar = () => {
 //   const getuser = localStorage.getItem("Users");
