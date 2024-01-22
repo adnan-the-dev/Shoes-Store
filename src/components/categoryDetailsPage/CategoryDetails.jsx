@@ -55,6 +55,10 @@ export default function CategoryDetails() {
     getDataApi();
   }, []);
 
+  const brandName = (name) => {
+    console.log(name);
+  };
+
   return (
     <>
       <MainBox>
@@ -80,7 +84,11 @@ export default function CategoryDetails() {
             <TagName>Brands</TagName>
             {array.map((item, i) => {
               return (
-                <TagName key={i} isActive={true}>
+                <TagName
+                  key={i}
+                  isActive={true}
+                  onClick={() => brandName(item)}
+                >
                   {item}
                 </TagName>
               );

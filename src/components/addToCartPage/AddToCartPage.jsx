@@ -36,6 +36,7 @@ export function AddToCartPage() {
 
   const [singleProduct, setSingleProduct] = useState({});
   const [selectSize, setSelectSize] = useState("");
+  const [image, setImage] = useState();
   const [quantity, setQuantity] = useState(1);
 
   const [loading, setLoading] = useState(true);
@@ -80,18 +81,21 @@ export function AddToCartPage() {
                     component="img"
                     src={singleProduct?.images[0]}
                     alt=""
+                    onClick={() => setImage(singleProduct.images[0])}
                   />
                   <SmallImge
                     isActive={true}
                     component="img"
                     src={singleProduct?.images[1]}
                     alt=""
+                    onClick={() => setImage(singleProduct.images[1])}
                   />
                   <SmallImge
                     isActive={true}
                     component="img"
                     src={singleProduct?.images[2]}
                     alt=""
+                    onClick={() => setImage(singleProduct.images[2])}
                   />
                 </>
               )}
@@ -100,7 +104,7 @@ export function AddToCartPage() {
               <LargeImage>
                 <LargeImg
                   component="img"
-                  src={singleProduct?.images[0]}
+                  src={image || singleProduct.images[0]}
                   alt=""
                 />
               </LargeImage>
