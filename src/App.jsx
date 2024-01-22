@@ -16,7 +16,7 @@ import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage
 import { Route, Routes } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { CompleteOrders } from "./components/completeOrders/CompleteOrders";
-import { Private } from "./components/privateRoute/Private";
+import { Private } from "./components/privatePage/Private";
 
 function App() {
   return (

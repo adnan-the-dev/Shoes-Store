@@ -31,34 +31,31 @@ export default function CategoryDetails() {
 
   const [prodcuts, setProdcuts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  console.log(searchQuery,'hellos');
+  console.log(searchQuery, "hellos");
   const getDataApi = async () => {
     const res = await getProductData();
     setProdcuts(res.data.result);
   };
 
-  const filteredProducts = prodcuts.filter(
-    (prod) => prod.catagory.toLowerCase() === param.code
-  );
+  // const filteredProducts = prodcuts.filter(
+  //   (prod) => prod.catagory.toLowerCase() === param.code
+  // );
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-//   const filteredArray = transactionData?.filter((array) =>
-//   searchQuery
-//     .toLowerCase()
-//     .split(" ")
-//     .every((term) => {
-//       return array?.description?.toLowerCase().includes(term);
-//     })
-// );
-
-
-
-
-
-
+  const filteredArray = prodcuts?.filter(
+    (array) =>
+      array.category.toLowerCase() ===
+      param.code.searchQuery
+        // .toLowerCase()
+        .split(" ")
+        .every((term) => {
+          return array?.description?.toLowerCase().includes(term);
+        })
+  );
+  console.log(filteredArray, "filteredArray");
 
   useEffect(() => {
     getDataApi();
@@ -69,7 +66,7 @@ export default function CategoryDetails() {
       <MainBox>
         <ChildBox>
           <TextField
-          onChange={handleSearchChange}
+            onChange={handleSearchChange}
             placeholder="Search here"
             InputProps={{
               style: {
@@ -138,7 +135,8 @@ export default function CategoryDetails() {
             </ChildCard>
 
             <Grid container>
-              {filteredProducts.map((item) => {
+              {filteredArray?.map((item) => {
+                console.log(filteredArray, "filteredArray");
                 return (
                   <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
                     <CardsContainer>
