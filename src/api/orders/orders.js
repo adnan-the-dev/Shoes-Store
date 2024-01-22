@@ -8,7 +8,10 @@ export const placeOrderApi = async (data) => {
 };
 
 export const getAllOrders = async () => {
-  const response = await handleApi(`${urls.order}`, "GET");
+  const user = localStorage.getItem('Users')
+  const user1 = JSON.parse(user)
+  // console.log(user1,'sdkjfs');
+  const response = await handleApi(`${urls.order}?${new URLSearchParams({username:user1.username})}`, "GET");
   return response;
 };
 
@@ -18,6 +21,8 @@ export const chagneStatusOrder = async (id) => {
 };
 
 export const completeOrders = async () => {
-  const response = await handleApi(`${urls.order}/complete`, "GET");
+  const user = localStorage.getItem('Users')
+  const user1 = JSON.parse(user)
+  const response = await handleApi(`${urls.order}/complete?${new URLSearchParams({username:user1.username})}`, "GET");
   return response;
 };

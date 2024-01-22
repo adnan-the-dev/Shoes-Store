@@ -30,6 +30,8 @@ export default function CategoryDetails() {
   const param = useParams();
 
   const [prodcuts, setProdcuts] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  console.log(searchQuery,'hellos');
   const getDataApi = async () => {
     const res = await getProductData();
     setProdcuts(res.data.result);
@@ -38,6 +40,25 @@ export default function CategoryDetails() {
   const filteredProducts = prodcuts.filter(
     (prod) => prod.catagory.toLowerCase() === param.code
   );
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+//   const filteredArray = transactionData?.filter((array) =>
+//   searchQuery
+//     .toLowerCase()
+//     .split(" ")
+//     .every((term) => {
+//       return array?.description?.toLowerCase().includes(term);
+//     })
+// );
+
+
+
+
+
+
 
   useEffect(() => {
     getDataApi();
@@ -48,6 +69,7 @@ export default function CategoryDetails() {
       <MainBox>
         <ChildBox>
           <TextField
+          onChange={handleSearchChange}
             placeholder="Search here"
             InputProps={{
               style: {
