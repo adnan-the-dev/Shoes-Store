@@ -40,8 +40,12 @@ export const SignUp = () => {
       postalCode: data.postalCode,
     };
     const res = await postRegisterApi(formData);
-    navigate("/login");
-    toast.success("User Register Successfully");
+    if (res.status == 200) {
+      toast.success("User Register Successfully");
+      navigate("/login");
+    } else {
+      toast.error("User not Register");
+    }
   };
   return (
     <>
