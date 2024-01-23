@@ -55,11 +55,6 @@ export default function CategoryDetails() {
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-
-  const brandName = (name) => {
-    console.log(name);
-  };
-
   const minMaxPriceFun = (data) => {
     const formData = {
       minNumber: data.minNumber,
@@ -143,10 +138,19 @@ export default function CategoryDetails() {
                   },
                 }}
               />
-              {/* <TagName colorActive={true} type="submit">
-                Filter
-              </TagName> */}
-              <Button type="submit">Filter</Button>
+              <Box style={{ padding: "0px 12px" }}>
+                <Button
+                  type="submit"
+                  style={{
+                    border: "1px solid",
+                    fontWeight: "600",
+                    color: "green",
+                    marginTop: "1rem",
+                  }}
+                >
+                  Filter
+                </Button>
+              </Box>
             </Box>
           </BrandNameBox>
         </Grid>

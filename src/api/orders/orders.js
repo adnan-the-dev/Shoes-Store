@@ -10,7 +10,6 @@ export const placeOrderApi = async (data) => {
 export const getAllOrders = async () => {
   const user = localStorage.getItem('Users')
   const user1 = JSON.parse(user)
-  // console.log(user1,'sdkjfs');
   const response = await handleApi(`${urls.order}?${new URLSearchParams({username:user1.username})}`, "GET");
   return response;
 };

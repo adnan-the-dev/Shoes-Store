@@ -62,4 +62,11 @@ export const PendinBoxBtn = styled(Box)(({ status }) => ({
   },
 }));
 
-status;
+export const CartBox = styled(Box)({
+  padding: "12px",
+  marginBottom: "1rem",
+  border: "1px solid #e7e2e2",
+  // boxShadow: "rgba(99, 99, 99, 0.2) 0px 2px 8px 0px",
+  boxShadow:
+    "rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px",
+});
