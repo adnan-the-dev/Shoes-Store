@@ -15,13 +15,6 @@ export const array = [
   "services",
   "shoes",
   "MeraShoe",
-  "Addidas",
-  "Addidas",
-  "Addidas",
-  "Addidas",
-  "Addidas",
-  "Addidas",
-  "Addidas",
 ];
 export const category = [
   {

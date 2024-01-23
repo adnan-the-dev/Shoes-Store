@@ -18,24 +18,27 @@ import {
   TagName,
   TextBox,
 } from "./styled-component";
-import { Box, Grid, TextField, Typography } from "@mui/material";
+import { Box, Button, Grid, TextField, Typography } from "@mui/material";
 import { IoSearch } from "react-icons/io5";
 import { array } from "../arrayComponent/Array";
 import { category } from "../arrayComponent/Array";
 import { useParams } from "react-router-dom";
 import { getProductData } from "../../api/signApi/signUpApi";
 import { Link, NavLink } from "react-router-dom/dist";
+import { useForm } from "react-hook-form";
 
 export default function CategoryDetails() {
   const param = useParams();
 
   const [prodcuts, setProdcuts] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [formDataPrice, setFormDataPrice] = useState({});
+  const { register, handleSubmit } = useForm();
+
   const getDataApi = async () => {
     const res = await getProductData();
     setProdcuts(res.data.result);
   };
-
   const filteredProducts = prodcuts.filter(
     (prod) =>
       prod.catagory.toLowerCase() === param.code &&
@@ -44,21 +47,30 @@ export default function CategoryDetails() {
         .split(" ")
         .every((term) => {
           return prod?.productname?.toLowerCase().includes(term);
-        })
+        }) &&
+      (!formDataPrice.minNumber || formDataPrice.minNumber <= prod.price) &&
+      (!formDataPrice.maxNumber || formDataPrice.maxNumber >= prod.price)
   );
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  useEffect(() => {
-    getDataApi();
-  }, []);
-
   const brandName = (name) => {
     console.log(name);
   };
 
+  const minMaxPriceFun = (data) => {
+    const formData = {
+      minNumber: data.minNumber,
+      maxNumber: data.maxNumber,
+    };
+    setFormDataPrice(formData);
+  };
+
+  useEffect(() => {
+    getDataApi();
+  }, []);
   return (
     <>
       <MainBox>
@@ -84,47 +96,58 @@ export default function CategoryDetails() {
             <TagName>Brands</TagName>
             {array.map((item, i) => {
               return (
-                <TagName
-                  key={i}
-                  isActive={true}
-                  onClick={() => brandName(item)}
+                <NavLink
+                  to={`/products/${item.toLocaleLowerCase()}`}
+                  style={{ textDecoration: "none" }}
                 >
-                  {item}
-                </TagName>
+                  <TagName
+                    key={i}
+                    isActive={param.code !== item.toLocaleLowerCase()}
+                  >
+                    {item}
+                  </TagName>
+                </NavLink>
               );
             })}
           </BrandNameBox>
           <BrandNameBox>
             <TagName>Price filter</TagName>
             <TagName isActive={true}>min Price</TagName>
-            <TextField
-              type="number"
-              placeholder="Min Price"
-              InputProps={{
-                style: {
-                  borderRadius: "0.5rem",
-                  width: "75%",
-                  marginLeft: "0.75rem",
-                  height: "2.7rem",
-                },
-              }}
-            />
-            <TagName sx={{ marginTop: "1rem" }} isActive={true}>
-              max Price
-            </TagName>
-            <TextField
-              type="number"
-              placeholder="Max Price"
-              InputProps={{
-                style: {
-                  borderRadius: "0.5rem",
-                  width: "75%",
-                  marginLeft: "0.75rem",
-                  height: "2.7rem",
-                },
-              }}
-            />
-            <TagName colorActive={true}>Filter</TagName>
+            <Box component="form" onSubmit={handleSubmit(minMaxPriceFun)}>
+              <TextField
+                type="number"
+                {...register("minNumber")}
+                placeholder="Min Price"
+                InputProps={{
+                  style: {
+                    borderRadius: "0.5rem",
+                    width: "75%",
+                    marginLeft: "0.75rem",
+                    height: "2.7rem",
+                  },
+                }}
+              />
+              <TagName sx={{ marginTop: "1rem" }} isActive={true}>
+                max Price
+              </TagName>
+              <TextField
+                type="number"
+                {...register("maxNumber")}
+                placeholder="Max Price"
+                InputProps={{
+                  style: {
+                    borderRadius: "0.5rem",
+                    width: "75%",
+                    marginLeft: "0.75rem",
+                    height: "2.7rem",
+                  },
+                }}
+              />
+              {/* <TagName colorActive={true} type="submit">
+                Filter
+              </TagName> */}
+              <Button type="submit">Filter</Button>
+            </Box>
           </BrandNameBox>
         </Grid>
         <Grid item xs={12} sm={12} md={6} lg={9} xl={9}>
