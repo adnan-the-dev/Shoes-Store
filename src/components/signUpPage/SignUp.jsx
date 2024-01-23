@@ -44,7 +44,7 @@ export const SignUp = () => {
       toast.success("User Register Successfully");
       navigate("/login");
     } else {
-      toast.error("User not Register");
+      toast.error("Dublicate key error");
     }
   };
   return (
