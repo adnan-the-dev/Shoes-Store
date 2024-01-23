@@ -1,6 +1,3 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import { Login } from "./components/loginPage/Login";
 import { Navbar } from "./components/navbar/Navbar";
@@ -14,7 +11,6 @@ import { AddToCartPage } from "./components/addToCartPage/AddToCartPage";
 import { CheckOutPage } from "./components/checkOutPage/CheckOutPage";
 import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage";
 import { Route, Routes } from "react-router-dom";
-import { useSelector } from "react-redux";
 import { CompleteOrders } from "./components/completeOrders/CompleteOrders";
 import { Private } from "./components/privatePage/Private";
 

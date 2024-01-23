@@ -37,15 +37,24 @@ import { Link } from "react-router-dom";
 import { getProductData } from "../../api/signApi/signUpApi";
 import { category } from "../arrayComponent/Array";
 import { NavLink } from "react-router-dom/dist";
+import { Loader } from "../loaderPage/Loader";
 
 export default function Home() {
   const [prodcuts, setProdcuts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const getDataApi = async () => {
     const res = await getProductData();
     setProdcuts(res.data.result);
   };
+
   useEffect(() => {
+    const loaderComponent = () => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+    };
     getDataApi();
+    loaderComponent();
   }, []);
 
   const arr = prodcuts.map((item) => ({
@@ -116,6 +125,7 @@ export default function Home() {
                       src={item?.images[0]}
                       alt=""
                     />
+
                     <CarouselBoxText>
                       <CarouselTypography>
                         {item.productname}
@@ -157,7 +167,15 @@ export default function Home() {
                     style={{ textDecoration: "none", color: "black" }}
                     to={`/cart/${item._id}`}
                   >
-                    <CardImage component="img" src={item.images[0]} alt="" />
+                    {isLoading ? (
+                      <Box
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <Loader />
+                      </Box>
+                    ) : (
+                      <CardImage component="img" src={item.images[0]} alt="" />
+                    )}
                     <DecriptionSection>
                       <Box>
                         <CardTitle>{item.productname}</CardTitle>

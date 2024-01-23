@@ -33,15 +33,39 @@ export const Login = () => {
       email: data.email,
       password: data.password,
     };
-    const res = await postLoginApi(formData);
-    if (res.status == 200) {
-      localStorage.setItem("Users", JSON.stringify(res.data));
-      navigate("/home");
-      toast.success("Login Successfully");
-    } else {
-      toast.error("User not found");
-    }
-  };
+
+      const res = await postLoginApi(formData);
+      if (res.status == 200) {
+        localStorage.setItem("Users", JSON.stringify(res.data));
+        navigate("/home");
+        toast.success("Login Successfully");
+      } else if (res.status == 400) {
+        toast.error("wrong password");
+      } else {
+        toast.error("User not found");
+      }
+    };
+
+  //   const res = await postLoginApi(formData);
+  //   try {
+  //     switch (res.status) {
+  //       case "200":
+  //         localStorage.setItem("Users", JSON.stringify(res.data));
+  //         navigate("/home");
+  //         toast.success("Login Successfully");
+  //         break;
+  //       case "400":
+  //         toast.error("wrong password");
+  //         break;
+  //       case "404":
+  //         toast.error("User not found");
+  //         break;
+  //     }
+  //   } catch (e) {
+  //     console.log(e.message);
+  //   }
+  //   // return res;
+  // };
 
   return (
     <>

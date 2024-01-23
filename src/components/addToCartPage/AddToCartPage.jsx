@@ -30,6 +30,8 @@ import { useNavigate, useParams } from "react-router-dom/dist";
 import { setCart } from "../../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
+import { Loader } from "../loaderPage/Loader";
+import { Box } from "@mui/material";
 export function AddToCartPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -37,6 +39,7 @@ export function AddToCartPage() {
   const [singleProduct, setSingleProduct] = useState({});
   const [selectSize, setSelectSize] = useState("");
   const [image, setImage] = useState();
+  const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
   const [loading, setLoading] = useState(true);
@@ -67,8 +70,15 @@ export function AddToCartPage() {
     }
   }
   useEffect(() => {
+    const loaderComponent = () => {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 5000);
+    };
     getDataApi();
+    loaderComponent();
   }, []);
+
   return (
     <>
       <MainContainerBox>
@@ -102,11 +112,17 @@ export function AddToCartPage() {
             </ChildImage>
             {!loading && (
               <LargeImage>
-                <LargeImg
-                  component="img"
-                  src={image || singleProduct.images[0]}
-                  alt=""
-                />
+                {isLoading ? (
+                  <Box style={{ display: "flex", justifyContent: "center" }}>
+                    <Loader />
+                  </Box>
+                ) : (
+                  <LargeImg
+                    component="img"
+                    src={image || singleProduct.images[0]}
+                    alt=""
+                  />
+                )}
               </LargeImage>
             )}
           </ImageBox>
