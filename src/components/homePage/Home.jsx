@@ -113,9 +113,9 @@ export default function Home() {
         <SilderTag>By Adidas</SilderTag>
         <CarouselBox>
           <Carousel style={{ textAlign: "center" }} responsive={responsive}>
-            {prodcuts.map((item) => {
+            {prodcuts.map((item,i) => {
               return (
-                <Box>
+                <Box key={i}>
                   <NavLink
                     style={{ textDecoration: "none", color: "black" }}
                     to={`/cart/${item._id}`}
@@ -158,8 +158,8 @@ export default function Home() {
 
         <Grid container>
           {prodcuts.map((item, i) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} xl={3}>
-              <CardsContainer key={i}>
+            <Grid key={i} item xs={12} sm={6} md={4} lg={3} xl={3}>
+              <CardsContainer>
                 <Box
                   style={{ boxShadow: " rgba(0, 0, 0, 0.15) 0px 3px 3px 0px" }}
                 >
