@@ -60,13 +60,10 @@ export const Navbar = () => {
                 >
                   <option label="Select brand"></option>
                   {unique.map((item, i) => {
-                    // const productId = arr?.find((ob) => ob.id == item)
                     return (
-                      // <NavLink>
                       <option key={i} value="">
                         {item}
                       </option>
-                      // </NavLink>
                     );
                   })}
                 </select>
