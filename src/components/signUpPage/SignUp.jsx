@@ -25,7 +25,13 @@ import { postRegisterApi } from "../../api/signApi/signUpApi";
 
 export const SignUp = () => {
   const navigate = useNavigate();
-  const { register, handleSubmit, reset } = useForm();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const onSubmit = async (data) => {
     const formData = {
@@ -85,9 +91,12 @@ export const SignUp = () => {
                 required: "Username is required",
                 minLength: {
                   value: 3,
-                  message: "Username must be at least 3 characters",
+                  message: "Username minimum at least 3 characters",
                 },
               })}
+              error={Boolean(errors.username)}
+              helperText={errors.username?.message}
+              margin="normal"
             />
             <InputLable>password</InputLable>
             <UserTextField
@@ -101,6 +110,9 @@ export const SignUp = () => {
                 },
               })}
               sx={{ mt: 2 }}
+              error={Boolean(errors.password)}
+              helperText={errors.password?.message}
+              margin="normal"
             />
             <InputLable>Email</InputLable>
             <EmailMainBox>
@@ -113,6 +125,9 @@ export const SignUp = () => {
                 {...register("email", {
                   required: "Email is required",
                 })}
+                error={Boolean(errors.email)}
+              helperText={errors.email?.message}
+              margin="normal"
               />
             </EmailMainBox>
             <InputLable>Street Address</InputLable>
@@ -121,6 +136,9 @@ export const SignUp = () => {
               {...register("address", {
                 required: "Address is required",
               })}
+              error={Boolean(errors.address)}
+              helperText={errors.address?.message}
+              margin="normal"
             />
             <InputLable>City</InputLable>
             <MainInputCityBox>
@@ -130,6 +148,9 @@ export const SignUp = () => {
                 {...register("city", {
                   required: "City is required",
                 })}
+                error={Boolean(errors.city)}
+              helperText={errors.city?.message}
+              margin="normal"
               />
               <ArrowBox>
                 <IoIosArrowUp size={14} />
@@ -143,6 +164,9 @@ export const SignUp = () => {
               {...register("stateProvince", {
                 required: "StateProvince is required",
               })}
+              error={Boolean(errors.stateProvince)}
+              helperText={errors.stateProvince?.message}
+              margin="normal"
             />
             <InputLable>Country</InputLable>
             <UserTextField
@@ -151,6 +175,9 @@ export const SignUp = () => {
               {...register("country", {
                 required: "Country is required",
               })}
+              error={Boolean(errors.country)}
+              helperText={errors.country?.message}
+              margin="normal"
             />
             <MainZipCodeBox>
               ZIP/Postal Code
@@ -162,6 +189,9 @@ export const SignUp = () => {
               {...register("PostalCode", {
                 required: "ZIP/Postal Code is required",
               })}
+              error={Boolean(errors.PostalCode)}
+              helperText={errors.PostalCode?.message}
+              margin="normal"
             />
             <AlertBox>
               <AlertBoxTage>Alerts</AlertBoxTage>
@@ -177,6 +207,7 @@ export const SignUp = () => {
                 color="#17d781"
                 marginTop="1rem"
               />
+
               <CancelAndSaveBtn onClick={() => reset()}>
                 Cancel
               </CancelAndSaveBtn>
