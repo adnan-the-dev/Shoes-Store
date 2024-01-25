@@ -37,6 +37,7 @@ export const CheckOutPage = () => {
   const userData = localStorage.getItem("Users");
   const user = JSON.parse(userData);
   const store = useSelector((state) => state.cart.cart);
+  console.log(store, "hello world");
   let totalAmount = 0;
   for (let i = 0; i < store.length; i++) {
     const qut = store[i].quantity;
@@ -70,8 +71,12 @@ export const CheckOutPage = () => {
   };
 
   const order = () => {
-    placeOrderFunc();
-    dispatch(resetCart());
+    if (store.length === 0) {
+      toast.error("Please Add Product");
+    } else {
+      placeOrderFunc();
+      dispatch(resetCart());
+    }
   };
   return (
     <>
