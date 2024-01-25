@@ -16,13 +16,13 @@ export const Navbar = () => {
     navigate("/");
   };
   const [prodcuts, setProdcuts] = useState([]);
-  const [brand, setBrand] = useState('');
+  const [brand, setBrand] = useState("");
 
   function changeRoute() {
     navigate(`/products/${brand}`);
   }
   useEffect(() => {
-    if(brand != ''){
+    if (brand != "") {
       changeRoute();
     }
   }, [brand]);
@@ -64,8 +64,7 @@ export const Navbar = () => {
                   value={brand}
                   onChange={(e) => {
                     setBrand(e.target.value);
-    // changeRoute();
-
+                    // changeRoute();
                   }}
                   style={{
                     padding: "8px",
