@@ -38,7 +38,7 @@ export const PendingOrderPage = () => {
         {data.map((order, i) => (
           <CartBox key={i}>
             <Box style={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography>OrderId: {order._id}</Typography>
+              <Typography>OrderId: {order._id.substring(0, 7)}</Typography>
               <Box>
                 {order.status == "complete" ? (
                   <PendinBoxBtn
