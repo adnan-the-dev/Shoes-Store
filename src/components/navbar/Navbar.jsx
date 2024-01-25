@@ -16,6 +16,14 @@ export const Navbar = () => {
     navigate("/");
   };
   const [prodcuts, setProdcuts] = useState([]);
+  const [brand, setBrand] = useState();
+
+  function changeRoute() {
+    navigate(`/products/${brand}`);
+  }
+  useEffect(() => {
+    changeRoute();
+  }, [brand]);
   const getDataApi = async () => {
     const res = await getProductData();
     setProdcuts(res.data.result);
@@ -50,6 +58,11 @@ export const Navbar = () => {
               </NavLink>
               <Box>
                 <select
+                  value={brand}
+                  onChange={(e) => {
+                    setBrand(e.target.value);
+                    changeRoute();
+                  }}
                   style={{
                     padding: "8px",
                     outline: "none",
@@ -61,7 +74,7 @@ export const Navbar = () => {
                   <option label="Select brand"></option>
                   {unique.map((item, i) => {
                     return (
-                      <option key={i} value="">
+                      <option key={i} value={item.toLowerCase()}>
                         {item}
                       </option>
                     );
