@@ -13,6 +13,7 @@ import { PendingOrderPage } from "./components/pendingOrderPage/PendingOrderPage
 import { Route, Routes } from "react-router-dom";
 import { CompleteOrders } from "./components/completeOrders/CompleteOrders";
 import { Private } from "./components/privatePage/Private";
+import { PatientDetailsForm } from "./components/clinicForm/PatientDetailsForm";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />
+        {/* <Route path="/login" element={<PatientDetailsForm />} /> */}
+
         <Route path="/register" element={<SignUp />} />
         <Route path="/adminLog" element={<AdminPenal />} />
         <Route
