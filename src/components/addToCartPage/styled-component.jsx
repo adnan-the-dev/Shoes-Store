@@ -21,7 +21,7 @@ export const ChildImage = styled(Box)({});
 export const SmallImge = styled(Box)(({ isActive }) => ({
   color: "transparent",
   width: "100px",
-  height: "100px",
+  // height: "100px",
   maxWidth: "100%",
   height: "auto",
   display: "block",

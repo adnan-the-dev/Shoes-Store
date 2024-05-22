@@ -43,7 +43,7 @@ export const MainSilderBox = styled(Box)({
 export const SilderTag = styled(Box)({
   marginLeft: "2.5rem",
   fontWeight: "bold",
-  fontWeight: "600",
+  // fontWeight: "600",
   fontSize: "1.25rem",
   lineHeight: "1.75rem",
   marginBottom: "3rem!important",

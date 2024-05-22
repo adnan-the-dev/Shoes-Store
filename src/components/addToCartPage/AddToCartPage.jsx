@@ -168,7 +168,7 @@ export function AddToCartPage() {
               <CounterBox>
                 <BtnBox
                   onClick={() =>
-                    setQuantity(quantity > 1 ? quantity - 1 : (quantity = 0))
+                    setQuantity(quantity > 1 ? quantity - 1 : 1)
                   }
                 >
                   -
