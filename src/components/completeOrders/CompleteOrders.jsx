@@ -29,19 +29,19 @@ export const CompleteOrders = () => {
   return (
     <>
       <MainBox>
-        {data.map((order) => {
-          return order.items.map((item) => (
+        {data?.map((order) => {
+          return order?.items?.map((item) => (
             <SecondCartItem>
-              <CartImage component="img" src={item.itemImage} alt="" />
+              <CartImage component="img" src={item?.itemImage} alt="" />
               <CartTextBox>
                 <TagBox>
-                  <Text>{item.itemName}</Text>
-                  <Text isActive={true}>Price : {item.itemPrice} Rs</Text>
+                  <Text>{item?.itemName}</Text>
+                  <Text isActive={true}>Price : {item?.itemPrice} Rs</Text>
                 </TagBox>
                 <MainDeleteBox>
                   <Box>
                     <SecondBox>
-                      <Text isActive={true}>Size: {item.size}</Text>
+                      <Text isActive={true}>Size: {item?.size}</Text>
                       <Text
                         style={{
                           color: "rgb(86 90 81)",
@@ -50,12 +50,12 @@ export const CompleteOrders = () => {
                         }}
                         isLeft={true}
                       >
-                        Quantity:{item.quantity}
+                        Quantity:{item?.quantity}
                       </Text>
                     </SecondBox>
                   </Box>
                   <Box>
-                    <PendinBoxBtn status={true}>{order.status}</PendinBoxBtn>
+                    <PendinBoxBtn status={true}>{order?.status}</PendinBoxBtn>
                   </Box>
                 </MainDeleteBox>
               </CartTextBox>

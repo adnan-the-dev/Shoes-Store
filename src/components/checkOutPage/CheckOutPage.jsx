@@ -46,12 +46,12 @@ export const CheckOutPage = () => {
   }
 
   const cartItems = store.map((item) => ({
-    itemId: item.productId,
-    quantity: item.quantity,
-    size: item.size,
-    itemPrice: item.price,
-    itemImage: item.img[0],
-    itemName: item.name,
+    itemId: item?.productId,
+    quantity: item?.quantity,
+    size: item?.size,
+    itemPrice: item?.price,
+    itemImage: item?.img[0],
+    itemName: item?.name,
   }));
 
   const placeOrderFunc = async () => {
@@ -90,19 +90,19 @@ export const CheckOutPage = () => {
             {store.map((item, i) => {
               return (
                 <SecondCartItem key={i}>
-                  <CartImage component="img" src={item.img[0]} alt="" />
+                  <CartImage component="img" src={item?.img[0]} alt="" />
                   <CartTextBox>
                     <TagBox>
-                      <Text>{item.name}</Text>
+                      <Text>{item?.name}</Text>
                       <Text isActive={true}>
-                        Total: {item.price * item.quantity} Rs
+                        Total: {item?.price * item?.quantity} Rs
                       </Text>
                     </TagBox>
                     <MainDeleteBox>
                       <Box>
-                        <Text isActive={true}>{item.mindetail}</Text>
+                        <Text isActive={true}>{item?.mindetail}</Text>
                         <SecondBox>
-                          <Text isActive={true}>Size: {item.size}</Text>
+                          <Text isActive={true}>Size: {item?.size}</Text>
                           <Text
                             style={{
                               color: "#939590",
@@ -111,9 +111,9 @@ export const CheckOutPage = () => {
                             }}
                             isLeft={true}
                           >
-                            <Typography>Quantity:{item.quantity}</Typography>
+                            <Typography>Quantity:{item?.quantity}</Typography>
                             <Typography style={{ color: "black" }}>
-                              Price:{item.price}
+                              Price:{item?.price}
                             </Typography>
                           </Text>
                         </SecondBox>

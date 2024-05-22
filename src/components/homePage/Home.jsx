@@ -57,11 +57,11 @@ export default function Home() {
     loaderComponent();
   }, []);
 
-  const arr = prodcuts.map((item) => ({
-    cat: item.catagory,
-    img: item.images[0],
+  const arr = prodcuts?.map((item) => ({
+    cat: item?.catagory,
+    img: item?.images[0],
   }));
-  const unique = [...new Set(arr.map((item) => item.cat))];
+  const unique = [...new Set(arr?.map((item) => item?.cat))];
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -90,7 +90,7 @@ export default function Home() {
 
       <CatagoryBox>
         {unique.map((item, i) => {
-          const imgUrl = arr.find((ob) => ob.cat == item);
+          const imgUrl = arr?.find((ob) => ob?.cat == item);
           return (
             <ChildCatagoryBox key={i}>
               <ImageBox component="img" src={imgUrl?.img} alt="" />
@@ -113,12 +113,12 @@ export default function Home() {
         <SilderTag>By Adidas</SilderTag>
         <CarouselBox>
           <Carousel style={{ textAlign: "center" }} responsive={responsive}>
-            {prodcuts.map((item,i) => {
+            {prodcuts?.map((item,i) => {
               return (
                 <Box key={i}>
                   <NavLink
                     style={{ textDecoration: "none", color: "black" }}
-                    to={`/cart/${item._id}`}
+                    to={`/cart/${item?._id}`}
                   >
                     <CarouselImage
                       component="img"
@@ -128,11 +128,11 @@ export default function Home() {
 
                     <CarouselBoxText>
                       <CarouselTypography>
-                        {item.productname}
+                        {item?.productname}
                       </CarouselTypography>
                       <DiscoutBox>
                         <DiscoutText isActive={true}>
-                          Rs:{item.price}
+                          Rs:{item?.price}
                         </DiscoutText>
                         <DiscoutText>15% off</DiscoutText>
                       </DiscoutBox>
@@ -157,7 +157,7 @@ export default function Home() {
         </NewProductSection>
 
         <Grid container>
-          {prodcuts.map((item, i) => (
+          {prodcuts?.map((item, i) => (
             <Grid key={i} item xs={12} sm={6} md={4} lg={3} xl={3}>
               <CardsContainer>
                 <Box
@@ -165,7 +165,7 @@ export default function Home() {
                 >
                   <NavLink
                     style={{ textDecoration: "none", color: "black" }}
-                    to={`/cart/${item._id}`}
+                    to={`/cart/${item?._id}`}
                   >
                     {isLoading ? (
                       <Box
@@ -174,17 +174,17 @@ export default function Home() {
                         <Loader />
                       </Box>
                     ) : (
-                      <CardImage component="img" src={item.images[0]} alt="" />
+                      <CardImage component="img" src={item?.images[0]} alt="" />
                     )}
                     <DecriptionSection>
                       <Box>
-                        <CardTitle>{item.productname}</CardTitle>
+                        <CardTitle>{item?.productname}</CardTitle>
                       </Box>
-                      <CardText>{item.mindetail}</CardText>
+                      <CardText>{item?.mindetail}</CardText>
                       <CardBox>
                         <PriceSection>
                           <Price setColor={true}>12$</Price>
-                          <Price>{item.price}$</Price>
+                          <Price>{item?.price}$</Price>
                         </PriceSection>
                         <DiscoutTypo>5%</DiscoutTypo>
                       </CardBox>

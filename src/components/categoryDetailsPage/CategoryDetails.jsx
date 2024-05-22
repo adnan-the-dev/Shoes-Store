@@ -39,7 +39,7 @@ export default function CategoryDetails() {
     const res = await getProductData();
     setProdcuts(res.data.result);
   };
-  const filteredProducts = prodcuts.filter(
+  const filteredProducts = prodcuts?.filter(
     (prod) =>
       prod.catagory.toLowerCase() === param.code &&
       searchQuery

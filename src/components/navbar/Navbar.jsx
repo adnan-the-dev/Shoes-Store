@@ -35,8 +35,8 @@ export const Navbar = () => {
     getDataApi();
   }, []);
 
-  const arr = prodcuts.map((item) => ({ cat: item.catagory, id: item.images }));
-  const unique = [...new Set(arr.map((item) => item.cat))];
+  const arr = prodcuts?.map((item) => ({ cat: item?.catagory, id: item?.images }));
+  const unique = [...new Set(arr?.map((item) => item?.cat))];
 
   return (
     <>
@@ -75,7 +75,7 @@ export const Navbar = () => {
                   }}
                 >
                   <option label="Select brand"></option>
-                  {unique.map((item, i) => {
+                  {unique?.map((item, i) => {
                     return (
                       <option key={i} value={item.toLowerCase()}>
                         {item}

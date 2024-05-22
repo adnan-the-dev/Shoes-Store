@@ -38,34 +38,34 @@ export const PendingOrderPage = () => {
         {data.map((order, i) => (
           <CartBox key={i}>
             <Box style={{ display: "flex", justifyContent: "space-between" }}>
-              <Typography>OrderId: {order._id.substring(0, 7)}</Typography>
+              <Typography>OrderId: {order?._id.substring(0, 7)}</Typography>
               <Box>
-                {order.status == "complete" ? (
+                {order?.status == "complete" ? (
                   <PendinBoxBtn
                     status={true}
-                    onClick={async () => statusChange(order._id)}
+                    onClick={async () => statusChange(order?._id)}
                   >
-                    {order.status}
+                    {order?.status}
                   </PendinBoxBtn>
                 ) : (
-                  <PendinBoxBtn onClick={async () => statusChange(order._id)}>
-                    {order.status}
+                  <PendinBoxBtn onClick={async () => statusChange(order?._id)}>
+                    {order?.status}
                   </PendinBoxBtn>
                 )}
               </Box>
             </Box>
-            {order.items.map((item, j) => (
+            {order?.items?.map((item, j) => (
               <SecondCartItem key={j}>
-                <CartImage component="img" src={item.itemImage} alt="" />
+                <CartImage component="img" src={item?.itemImage} alt="" />
                 <CartTextBox>
                   <TagBox>
-                    <Text>{item.itemName}</Text>
-                    <Text isActive={true}>Price : {item.itemPrice} Rs</Text>
+                    <Text>{item?.itemName}</Text>
+                    <Text isActive={true}>Price : {item?.itemPrice} Rs</Text>
                   </TagBox>
                   <MainDeleteBox>
                     <Box>
                       <SecondBox>
-                        <Text isActive={true}>Size: {item.size}</Text>
+                        <Text isActive={true}>Size: {item?.size}</Text>
                         <Text
                           style={{
                             color: "rgb(86 90 81)",
@@ -74,7 +74,7 @@ export const PendingOrderPage = () => {
                           }}
                           isLeft={true}
                         >
-                          Quantity:{item.quantity}
+                          Quantity:{item?.quantity}
                         </Text>
                       </SecondBox>
                     </Box>
