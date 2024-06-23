@@ -37,24 +37,25 @@ import { Link } from "react-router-dom";
 import { getProductData } from "../../api/signApi/signUpApi";
 import { category } from "../arrayComponent/Array";
 import { NavLink } from "react-router-dom/dist";
-import { Loader } from "../loaderPage/Loader";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function Home() {
   const [prodcuts, setProdcuts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const getDataApi = async () => {
-    const res = await getProductData();
-    setProdcuts(res.data.result);
+    setIsLoading(true);
+    try {
+      const res = await getProductData();
+      setProdcuts(res.data.result);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
-    const loaderComponent = () => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
-    };
     getDataApi();
-    loaderComponent();
   }, []);
 
   const arr = prodcuts?.map((item) => ({
@@ -113,18 +114,26 @@ export default function Home() {
         <SilderTag>By Adidas</SilderTag>
         <CarouselBox>
           <Carousel style={{ textAlign: "center" }} responsive={responsive}>
-            {prodcuts?.map((item,i) => {
+            {prodcuts?.map((item, i) => {
               return (
                 <Box key={i}>
                   <NavLink
                     style={{ textDecoration: "none", color: "black" }}
                     to={`/cart/${item?._id}`}
                   >
-                    <CarouselImage
-                      component="img"
-                      src={item?.images[0]}
-                      alt=""
-                    />
+                    {isLoading ? (
+                      <Box
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <CircularProgress />
+                      </Box>
+                    ) : (
+                      <CarouselImage
+                        component="img"
+                        src={item?.images[0]}
+                        alt=""
+                      />
+                    )}
 
                     <CarouselBoxText>
                       <CarouselTypography>
@@ -171,7 +180,7 @@ export default function Home() {
                       <Box
                         style={{ display: "flex", justifyContent: "center" }}
                       >
-                        <Loader />
+                        <CircularProgress />
                       </Box>
                     ) : (
                       <CardImage component="img" src={item?.images[0]} alt="" />

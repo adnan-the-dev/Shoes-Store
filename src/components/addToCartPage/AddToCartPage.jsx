@@ -30,7 +30,7 @@ import { useNavigate, useParams } from "react-router-dom/dist";
 import { setCart } from "../../redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
-import { Loader } from "../loaderPage/Loader";
+import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/material";
 export function AddToCartPage() {
   const dispatch = useDispatch();
@@ -39,12 +39,12 @@ export function AddToCartPage() {
   const [singleProduct, setSingleProduct] = useState({});
   const [selectSize, setSelectSize] = useState("");
   const [image, setImage] = useState();
-  const [isLoading, setIsLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
 
   const [loading, setLoading] = useState(true);
   const param = useParams();
   const getDataApi = async () => {
+    setLoading(true);
     const res = await getSingleProductApi(param.id);
     if (res.status == 200) {
       setLoading(false);
@@ -70,13 +70,7 @@ export function AddToCartPage() {
     }
   }
   useEffect(() => {
-    const loaderComponent = () => {
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 5000);
-    };
     getDataApi();
-    loaderComponent();
   }, []);
 
   return (
@@ -110,21 +104,19 @@ export function AddToCartPage() {
                 </>
               )}
             </ChildImage>
-            {!loading && (
-              <LargeImage>
-                {isLoading ? (
-                  <Box style={{ display: "flex", justifyContent: "center" }}>
-                    <Loader />
-                  </Box>
-                ) : (
-                  <LargeImg
-                    component="img"
-                    src={image || singleProduct.images[0]}
-                    alt=""
-                  />
-                )}
-              </LargeImage>
-            )}
+            <LargeImage>
+              {loading ? (
+                <Box style={{ display: "flex", justifyContent: "center" }}>
+                  <CircularProgress />
+                </Box>
+              ) : (
+                <LargeImg
+                  component="img"
+                  src={image || singleProduct.images[0]}
+                  alt=""
+                />
+              )}
+            </LargeImage>
           </ImageBox>
 
           <ImageTextBox>
@@ -167,9 +159,8 @@ export function AddToCartPage() {
 
               <CounterBox>
                 <BtnBox
-                  onClick={() =>
-                    setQuantity(quantity > 1 ? quantity - 1 : 1)
-                  }
+                  disabled={quantity < 2}
+                  onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
                 >
                   -
                 </BtnBox>

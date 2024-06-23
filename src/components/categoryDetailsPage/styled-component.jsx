@@ -64,6 +64,7 @@ export const CardsContainer = styled(Box)({
   // margin:'0px 8px',
   display: "flex",
   justifyContent: "center",
+  alignItems: "center",
   gap: "3rem",
   padding: "1rem 1rem",
   // cursor:'pointer'

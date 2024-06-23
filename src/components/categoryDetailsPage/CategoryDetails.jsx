@@ -26,6 +26,7 @@ import { useParams } from "react-router-dom";
 import { getProductData } from "../../api/signApi/signUpApi";
 import { Link, NavLink } from "react-router-dom/dist";
 import { useForm } from "react-hook-form";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function CategoryDetails() {
   const param = useParams();
@@ -34,11 +35,20 @@ export default function CategoryDetails() {
   const [searchQuery, setSearchQuery] = useState("");
   const [formDataPrice, setFormDataPrice] = useState({});
   const { register, handleSubmit } = useForm();
+  const [isLoading, setIsLoading] = useState(true);
 
   const getDataApi = async () => {
-    const res = await getProductData();
-    setProdcuts(res.data.result);
+    setIsLoading(true);
+    try {
+      const res = await getProductData();
+      setProdcuts(res.data.result);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   const filteredProducts = prodcuts?.filter(
     (prod) =>
       prod.catagory.toLowerCase() === param.code &&
@@ -178,11 +188,22 @@ export default function CategoryDetails() {
                             cursor: "pointer",
                           }}
                         >
-                          <CardImage
-                            component="img"
-                            src={item.images[0]}
-                            alt=""
-                          />
+                          {isLoading ? (
+                            <Box
+                              style={{
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            >
+                              <CircularProgress />
+                            </Box>
+                          ) : (
+                            <CardImage
+                              component="img"
+                              src={item?.images[0]}
+                              alt=""
+                            />
+                          )}
                           <DecriptionSection>
                             <Box>
                               <CardTitle>{item.productname}</CardTitle>
