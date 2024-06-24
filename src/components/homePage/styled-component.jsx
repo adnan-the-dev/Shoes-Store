@@ -4,7 +4,7 @@ export const CatagoryBox = styled(Box)({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-around",
-  flexWrap:'wrap'
+  flexWrap:'wrap',
 });
 
 export const ChildCatagoryBox = styled(Box)({
