@@ -35,7 +35,10 @@ export const Navbar = () => {
     getDataApi();
   }, []);
 
-  const arr = prodcuts?.map((item) => ({ cat: item?.catagory, id: item?.images }));
+  const arr = prodcuts?.map((item) => ({
+    cat: item?.catagory,
+    id: item?.images,
+  }));
   const unique = [...new Set(arr?.map((item) => item?.cat))];
 
   return (
@@ -70,14 +73,29 @@ export const Navbar = () => {
                     padding: "8px",
                     outline: "none",
                     fontSize: "1rem",
-                    border: "none",
-                    backgroundColor: "transparent",
+                    border: "1px solid #ccc",
+                    borderRadius: "4px",
+                    backgroundColor: "white",
+                    color: "#333",
+                    cursor: "pointer",
+                    appearance: "none", // For removing the default dropdown arrow in some browsers
+                    WebkitAppearance: "none",
+                    MozAppearance: "none",
                   }}
                 >
                   <option label="Select brand"></option>
                   {unique?.map((item, i) => {
                     return (
-                      <option key={i} value={item.toLowerCase()}>
+                      <option
+                        style={{
+                          padding: "8px",
+                          backgroundColor: "white",
+                          color: "#333",
+                          cursor: "pointer",
+                        }}
+                        key={i}
+                        value={item.toLowerCase()}
+                      >
                         {item}
                       </option>
                     );

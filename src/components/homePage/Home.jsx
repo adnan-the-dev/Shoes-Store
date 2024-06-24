@@ -88,7 +88,6 @@ export default function Home() {
       <Box>
         <img width="100%" src={banner} alt="" />
       </Box>
-
       <CatagoryBox>
         {unique.map((item, i) => {
           const imgUrl = arr?.find((ob) => ob?.cat == item);
