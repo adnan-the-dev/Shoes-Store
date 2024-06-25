@@ -14,12 +14,46 @@ import { Route, Routes } from "react-router-dom";
 import { CompleteOrders } from "./components/completeOrders/CompleteOrders";
 import { Private } from "./components/privatePage/Private";
 import { PatientDetailsForm } from "./components/clinicForm/PatientDetailsForm";
+import Loader from "./components/loaderPage/Loader";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 function App() {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    axios.interceptors.request.use(
+      (config) => {
+        setLoading(true)
+        // Do something before request is sent
+        return config;
+      },
+      (error) => {
+        // Do something with request error
+        return Promise.reject(error);
+      }
+    );
+
+    // Add a response interceptor
+    axios.interceptors.response.use(
+      (response) => {
+        setLoading(false)
+        // Any status code that lie within the range of 2xx cause this function to trigger
+        // Do something with response data
+        return response;
+      },
+      (error) => {
+        // Any status codes that falls outside the range of 2xx cause this function to trigger
+        // Do something with response error
+        return Promise.reject(error);
+      }
+    );
+  }, []);
   return (
     <>
       <ToastContainer />
       <Navbar />
+      <Loader show={loading} />
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/login" element={<Login />} />

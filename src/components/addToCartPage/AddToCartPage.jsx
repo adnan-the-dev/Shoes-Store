@@ -32,6 +32,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Box } from "@mui/material";
+import showError from "../errorPage/ErrorPage";
 export function AddToCartPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -66,7 +67,7 @@ export function AddToCartPage() {
       dispatch(setCart(total));
       navigate("/cart");
     } else {
-      toast.error("Select Size");
+      showError("notSelectSize");
     }
   }
   useEffect(() => {

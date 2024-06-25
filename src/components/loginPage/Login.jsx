@@ -18,6 +18,7 @@ import {
 } from "./styled-component";
 import { postLoginApi } from "../../api/signApi/signUpApi";
 import { toast } from "react-toastify";
+import showError from "../errorPage/ErrorPage";
 
 export const Login = () => {
   const navigate = useNavigate();
@@ -36,7 +37,8 @@ export const Login = () => {
 
     const res = await postLoginApi(formData);
     if (res.status != 200)
-      return toast.error(res.response?.data || "Unable to connect to server");
+      // return toast.error(res.response?.data || "Unable to connect to server");
+      return showError("serverError", res);
     localStorage.setItem("Users", JSON.stringify(res.data));
     navigate("/home");
     toast.success("Login Successfully");

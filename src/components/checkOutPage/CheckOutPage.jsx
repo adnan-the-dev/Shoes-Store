@@ -30,6 +30,7 @@ import { removeItem, resetCart } from "../../redux/slices/cartSlice";
 import { placeOrderApi } from "../../api/orders/orders";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import showError from "../errorPage/ErrorPage";
 
 export const CheckOutPage = () => {
   const navigate = useNavigate();
@@ -37,7 +38,6 @@ export const CheckOutPage = () => {
   const userData = localStorage.getItem("Users");
   const user = JSON.parse(userData);
   const store = useSelector((state) => state.cart.cart);
-  console.log(store, "hello world");
   let totalAmount = 0;
   for (let i = 0; i < store.length; i++) {
     const qut = store[i].quantity;
@@ -66,17 +66,24 @@ export const CheckOutPage = () => {
       toast.success("Order Placed");
       navigate("/home");
     } else {
-      toast.error("unable to place order");
+      // toast.error("unable to place order");
+      showError("500");
     }
   };
 
   const order = () => {
     if (store.length === 0) {
-      toast.error("Please Add Product");
+      // toast.error("Please Add Product");
+      showError("storeLength");
     } else {
       placeOrderFunc();
       dispatch(resetCart());
     }
+  };
+
+  const deleteItemFun = (i) => {
+    dispatch(removeItem(i));
+    toast.success("deletItem");
   };
   return (
     <>
@@ -118,7 +125,7 @@ export const CheckOutPage = () => {
                           </Text>
                         </SecondBox>
                       </Box>
-                      <Box onClick={() => dispatch(removeItem(i))}>
+                      <Box onClick={() => deleteItemFun(i)}>
                         <MdDelete
                           size={25}
                           style={{ marginTop: "1rem", cursor: "pointer" }}

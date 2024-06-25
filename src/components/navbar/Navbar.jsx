@@ -6,6 +6,7 @@ import { RiShoppingBag2Line } from "react-icons/ri";
 import { LogoBox, LogutBox, MainBox } from "../sharedFile/styled-component";
 import { getProductData } from "../../api/signApi/signUpApi";
 import { NavLink, useNavigate } from "react-router-dom/dist";
+import UpdateUser from "../updateUser/UpDateUser";
 
 export const Navbar = () => {
   const navigate = useNavigate();
@@ -131,6 +132,9 @@ export const Navbar = () => {
 
           {user ? (
             <>
+              {/* <Box>
+                <UpdateUser />
+              </Box> */}
               <Tooltip title={user.username}>
                 <Box>
                   <AiOutlineUser />
